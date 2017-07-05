@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tournamentmaker</title>
+<style>
+div.tab {
+	overflow: hidden;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
+}
+
+div.tab button {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+}
+
+div.tab button:hover {
+	background-color: #ddd;
+}
+
+div.tab button.active {
+	background-color: #ccc;
+}
+
+.tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+}
+</style>
+</head>
+<body>
+
+	<h1>Tournamentmaker</h1>
+
+	<div class="tab">
+		<button class="tablinks" onclick="openCity(event, 'player')">Player</button>
+		<button class="tablinks" onclick="openCity(event, 'tournament')">Tournament</button>
+	</div>
+
+	<div id="player" class="tabcontent">
+		<h3>Player</h3>
+		<p>List of all Players</p>
+	</div>
+
+	<div id="tournament" class="tabcontent">
+		<h3>Tournament</h3>
+		<p>Overview of the current tournament</p>
+	</div>
+
+	<script>
+		function openCity(evt, cityName) {
+			var i, tabcontent, tablinks;
+
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(
+						" active", "");
+			}
+
+			document.getElementById(cityName).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+	</script>
+
+</body>
+</html>
