@@ -41,22 +41,30 @@ div.tab button.active {
 	<h1>Tournamentmaker</h1>
 
 	<div class="tab">
-		<button class="tablinks" onclick="openCity(event, 'player')">Player</button>
-		<button class="tablinks" onclick="openCity(event, 'tournament')">Tournament</button>
+		<button class="tablinks" onclick="openTab(event, 'player')">Player</button>
+		<button class="tablinks" onclick="openTab(event, 'tournament')">Tournament</button>
 	</div>
 
 	<div id="player" class="tabcontent">
-		<h3>Player</h3>
-		<p>List of all Players</p>
+		<h3>List of all Players</h3>
+		<table id="players" border="1"
+			style="border-collapse: collapse; cellspacing: 10px">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Elo</th>
+				<th>Active</th>
+			</tr>
+		</table>
 	</div>
 
 	<div id="tournament" class="tabcontent">
-		<h3>Tournament</h3>
-		<p>Overview of the current tournament</p>
+		<h3>Overview of the current tournament</h3>
 	</div>
 
+	<script src="js/Players.js"></script>
 	<script>
-		function openCity(evt, cityName) {
+		function openTab(evt, tab) {
 			var i, tabcontent, tablinks;
 
 			tabcontent = document.getElementsByClassName("tabcontent");
@@ -70,8 +78,10 @@ div.tab button.active {
 						" active", "");
 			}
 
-			document.getElementById(cityName).style.display = "block";
+			document.getElementById(tab).style.display = "block";
 			evt.currentTarget.className += " active";
+
+			fillPlayersTable();
 		}
 	</script>
 
