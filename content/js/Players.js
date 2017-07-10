@@ -46,8 +46,15 @@ function getContent(url) {
 	return JSON.parse(xmlhttp.responseText);
 }
 
-function postContent(url, content) {
-	// TODO execute POST request
+function postPlayer() {
+	var playerName = document.getElementById("playerName").value;
+	var body = {
+		"name" : playerName
+	};
+	document.getElementById("debug").innerHTML = JSON.stringify(body);
 
-	return content;
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("POST", "http://localhost:8081/player", false);
+	xmlhttp.setRequestHeader("Content-Type", "application/json");
+	xmlhttp.send(JSON.stringify(body));
 }

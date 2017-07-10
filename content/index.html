@@ -41,11 +41,14 @@ div.tab button.active {
 	<h1>Tournamentmaker</h1>
 
 	<div class="tab">
-		<button class="tablinks" onclick="openTab(event, 'player')">Player</button>
-		<button class="tablinks" onclick="openTab(event, 'tournament')">Tournament</button>
+		<!--button class="tablinks" onclick="openTab(event, 'player')">Player</button>
+		<button class="tablinks" onclick="openTab(event, 'tournament')">Tournament</button-->
+		<button class="tablinks" onclick="openTabPlayer(event)">Player</button>
+		<button class="tablinks" onclick="openTabTournament(event)">Tournament</button>
 	</div>
 
 	<div id="player" class="tabcontent">
+
 		<h3>List of all Players</h3>
 		<table id="players" border="1"
 			style="border-collapse: collapse; cellspacing: 10px">
@@ -56,6 +59,24 @@ div.tab button.active {
 				<th>Active</th>
 			</tr>
 		</table>
+
+		<br />
+		<table>
+			<tr>
+				<td valign="top">Player name:</td>
+				<td>
+					<form>
+						<input id="playerName" type="text" name="playerName" /><br />
+						<!--input
+							type="submit" value="Save player" /-->
+						<input type="button" value="Save player" onclick="postPlayer()" />
+					</form>
+				</td>
+			</tr>
+		</table>
+
+		<div id="debug"></div>
+
 	</div>
 
 	<div id="tournament" class="tabcontent">
@@ -64,6 +85,18 @@ div.tab button.active {
 
 	<script src="js/Players.js"></script>
 	<script>
+		function openTabPlayer(event) {
+			document.getElementById("tournament").style.display = "none";
+			document.getElementById("player").style.display = "block";
+
+			fillPlayersTable();
+		}
+
+		function openTabTournament(event) {
+			document.getElementById("tournament").style.display = "block";
+			document.getElementById("player").style.display = "none";
+		}
+
 		function openTab(evt, tab) {
 			var i, tabcontent, tablinks;
 
