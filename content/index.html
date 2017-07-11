@@ -41,8 +41,6 @@ div.tab button.active {
 	<h1>Tournamentmaker</h1>
 
 	<div class="tab">
-		<!--button class="tablinks" onclick="openTab(event, 'player')">Player</button>
-		<button class="tablinks" onclick="openTab(event, 'tournament')">Tournament</button-->
 		<button class="tablinks" onclick="openTabPlayer(event)">Player</button>
 		<button class="tablinks" onclick="openTabTournament(event)">Tournament</button>
 	</div>
@@ -66,10 +64,8 @@ div.tab button.active {
 				<td valign="top">Player name:</td>
 				<td>
 					<form>
-						<input id="playerName" type="text" name="playerName" /><br />
-						<!--input
-							type="submit" value="Save player" /-->
-						<input type="button" value="Save player" onclick="postPlayer()" />
+						<input id="playerName" type="text" name="playerName" /><br /> <input
+							type="button" value="Save player" onclick="postPlayer()" />
 					</form>
 				</td>
 			</tr>
@@ -80,41 +76,30 @@ div.tab button.active {
 	</div>
 
 	<div id="tournament" class="tabcontent">
+
 		<h3>Overview of the current tournament</h3>
+		<table id="tournaments" border="1"
+			style="border-collapse: collapse; cellspacing: 10px">
+		</table>
+
 	</div>
 
-	<script src="js/Players.js"></script>
+	<script src="js/Player.js"></script>
+	<script src="js/Tournament.js"></script>
+	<script src="js/HttpHelper.js"></script>
 	<script>
 		function openTabPlayer(event) {
 			document.getElementById("tournament").style.display = "none";
 			document.getElementById("player").style.display = "block";
 
-			fillPlayersTable();
+			fillPlayerTable();
 		}
 
 		function openTabTournament(event) {
 			document.getElementById("tournament").style.display = "block";
 			document.getElementById("player").style.display = "none";
-		}
 
-		function openTab(evt, tab) {
-			var i, tabcontent, tablinks;
-
-			tabcontent = document.getElementsByClassName("tabcontent");
-			for (i = 0; i < tabcontent.length; i++) {
-				tabcontent[i].style.display = "none";
-			}
-
-			tablinks = document.getElementsByClassName("tablinks");
-			for (i = 0; i < tablinks.length; i++) {
-				tablinks[i].className = tablinks[i].className.replace(
-						" active", "");
-			}
-
-			document.getElementById(tab).style.display = "block";
-			evt.currentTarget.className += " active";
-
-			fillPlayersTable();
+			fillTournamentTable();
 		}
 	</script>
 

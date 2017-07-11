@@ -1,6 +1,6 @@
-function fillPlayersTable() {
+function fillPlayerTable() {
 	document.getElementById("players").innerHTML = "";
-	addHeader();
+	addTableHeader();
 
 	var players = getContent("http://localhost:8081/player");
 	for (var i = 0; i < players.length; i++) {
@@ -8,7 +8,7 @@ function fillPlayersTable() {
 	}
 }
 
-function addHeader() {
+function addTableHeader() {
 	var table = document.getElementById("players");
 	var row = table.insertRow(0);
 
@@ -38,23 +38,11 @@ function addPlayerToTable(player, row) {
 	activeCell.innerHTML = player.active;
 }
 
-function getContent(url) {
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("GET", url, false);
-	xmlhttp.send();
-
-	return JSON.parse(xmlhttp.responseText);
-}
-
 function postPlayer() {
 	var playerName = document.getElementById("playerName").value;
 	var body = {
 		"name" : playerName
 	};
-	document.getElementById("debug").innerHTML = JSON.stringify(body);
 
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "http://localhost:8081/player", false);
-	xmlhttp.setRequestHeader("Content-Type", "application/json");
-	xmlhttp.send(JSON.stringify(body));
+	postContent("http://localhost:8081/player", body);
 }
