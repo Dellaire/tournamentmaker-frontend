@@ -4,13 +4,13 @@ function fillMatchTable() {
 
 	addMatchesTableHeader();
 
-	var tournaments = getContent("http://localhost:8080/tournaments");// [0].rounds[0].matches;
+	var tournaments = getContent("http://localhost:8080/tournaments");
 	for (var i = 0; i < tournaments.length; i++) {
 		for (var j = 0; j < tournaments[i].rounds.length; j++) {
 			for (var k = 0; k < tournaments[i].rounds[j].matches.length; k++) {
 				addMatchToTable(tournaments[i].name,
 						tournaments[i].rounds[j].name,
-						tournaments[i].rounds[j].matches[k], k);
+						tournaments[i].rounds[j].matches[k]);
 			}
 		}
 	}
@@ -33,9 +33,9 @@ function addMatchesTableHeader() {
 	team2Cell.innerHTML = "Team 2";
 }
 
-function addMatchToTable(tournamentName, roundName, match, row) {
+function addMatchToTable(tournamentName, roundName, match) {
 	var table = document.getElementById("matches");
-	var row = table.insertRow(row + 1);
+	var row = table.insertRow(-1);
 
 	var tournamentCell = row.insertCell(0);
 	var roundCell = row.insertCell(1);

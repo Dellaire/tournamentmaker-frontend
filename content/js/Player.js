@@ -4,7 +4,7 @@ function fillPlayerTable() {
 
 	var players = getContent("http://localhost:8081/player");
 	for (var i = 0; i < players.length; i++) {
-		addPlayerToTable(players[i], i);
+		addPlayerToTable(players[i]);
 	}
 }
 
@@ -23,9 +23,9 @@ function addTableHeader() {
 	activeCell.innerHTML = "Active";
 }
 
-function addPlayerToTable(player, row) {
+function addPlayerToTable(player) {
 	var table = document.getElementById("players");
-	var row = table.insertRow(row + 1);
+	var row = table.insertRow(-1);
 
 	var idCell = row.insertCell(0);
 	var nameCell = row.insertCell(1);
