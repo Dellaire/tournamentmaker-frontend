@@ -82,6 +82,21 @@ div.tab button.active {
 		<table id="matches" border="1"
 			style="border-collapse: collapse; cellspacing: 10px">
 		</table>
+
+		<br />
+		<table>
+			<tr>
+				<td valign="top">Tournament name:</td>
+				<td>
+					<form>
+						<input id="tournamentName" type="text" name="tournamentName" /><br />
+						<input type="button" value="New tournament"
+							onclick="postTournament()" /><br /> <input type="button"
+							value="New round" onclick="putRound()" />
+					</form>
+				</td>
+			</tr>
+		</table>
 		<br />
 
 		<div id="debug2"></div>

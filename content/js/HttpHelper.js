@@ -12,3 +12,10 @@ function postContent(url, content) {
 	xmlhttp.setRequestHeader("Content-Type", "application/json");
 	xmlhttp.send(JSON.stringify(content));
 }
+
+function putContent(url) {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("PUT", url, false);
+	xmlhttp.setRequestHeader("Content-Type", "application/json");
+	xmlhttp.send();
+}

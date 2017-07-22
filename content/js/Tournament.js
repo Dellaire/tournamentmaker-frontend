@@ -8,7 +8,7 @@ function fillMatchTable() {
 	for (var i = 0; i < tournaments.length; i++) {
 		for (var j = 0; j < tournaments[i].rounds.length; j++) {
 			for (var k = 0; k < tournaments[i].rounds[j].matches.length; k++) {
-				addMatchToTable(tournaments[i].name,
+				addMatchToTable(tournaments[i].id,
 						tournaments[i].rounds[j].name,
 						tournaments[i].rounds[j].matches[k]);
 			}
@@ -50,4 +50,19 @@ function addMatchToTable(tournamentName, roundName, match) {
 	scoreCell.innerHTML = match.team1Score + " : " + match.team2Score;
 	team2Cell.innerHTML = match.team2.player1.name + " + "
 			+ match.team2.player2.name;
+}
+
+function putRound() {
+	var tournamentName = document.getElementById("tournamentName").value;
+	putContent("http://localhost:8080/tournaments/" + tournamentName
+			+ "/rounds/generate");
+}
+
+function postTournament() {
+	var tournamentName = document.getElementById("tournamentName").value;
+	var body = {
+		"id" : tournamentName
+	};
+
+	postContent("http://localhost:8080/tournaments", body);
 }
