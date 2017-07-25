@@ -1,7 +1,5 @@
 function fillMatchTable() {
 	document.getElementById("matches").innerHTML = "";
-	addTableHeader();
-
 	addMatchesTableHeader();
 
 	var tournaments = getContent("http://localhost:8080/tournaments");
@@ -42,6 +40,7 @@ function addMatchToTable(tournamentName, roundName, match) {
 	var team1Cell = row.insertCell(2);
 	var scoreCell = row.insertCell(3);
 	var team2Cell = row.insertCell(4);
+	var addScoreCell = row.insertCell(5);
 
 	tournamentCell.innerHTML = tournamentName;
 	roundCell.innerHTML = roundName;
@@ -50,12 +49,18 @@ function addMatchToTable(tournamentName, roundName, match) {
 	scoreCell.innerHTML = match.team1Score + " : " + match.team2Score;
 	team2Cell.innerHTML = match.team2.player1.name + " + "
 			+ match.team2.player2.name;
+	addScoreCell.innerHTML = "<form><input id=\"team1Score_"
+			+ match.id
+			+ "\" type=\"text\" /><input	id=\"team2Score_"
+			+ match.id
+			+ "\" type=\"text\" /><input type=\"button\" value=\"Set score\" onclick=\"setScore("
+			+ match + ")\" /></form>";
 }
 
 function putRound() {
 	var tournamentName = document.getElementById("tournamentName").value;
 	putContent("http://localhost:8080/tournaments/" + tournamentName
-			+ "/rounds/generate");
+			+ "/rounds/generate", null);
 }
 
 function postTournament() {
@@ -65,4 +70,14 @@ function postTournament() {
 	};
 
 	postContent("http://localhost:8080/tournaments", body);
+}
+
+function setScore(match) {
+	var team1Score = document.getElementById("team1Score_" + match.id);
+	var team2Score = document.getElementById("team2Score_" + match.id);
+
+	match.team1Score = team1Score;
+	match.team2Score = team2Score;
+
+	putContent("http://localhost:8080/matches", match);
 }

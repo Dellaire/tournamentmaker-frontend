@@ -6,16 +6,16 @@ function getContent(url) {
 	return JSON.parse(xmlhttp.responseText);
 }
 
-function postContent(url, content) {
+function postContent(url, body) {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("POST", url, false);
 	xmlhttp.setRequestHeader("Content-Type", "application/json");
-	xmlhttp.send(JSON.stringify(content));
+	xmlhttp.send(JSON.stringify(body));
 }
 
-function putContent(url) {
+function putContent(url, body) {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("PUT", url, false);
 	xmlhttp.setRequestHeader("Content-Type", "application/json");
-	xmlhttp.send();
+	xmlhttp.send(JSON.stringify(body));
 }
