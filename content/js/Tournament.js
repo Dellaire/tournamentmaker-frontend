@@ -1,3 +1,5 @@
+var matches = new Map();
+
 function fillMatchTable() {
 	document.getElementById("matches").innerHTML = "";
 	addMatchesTableHeader();
@@ -32,6 +34,8 @@ function addMatchesTableHeader() {
 }
 
 function addMatchToTable(tournamentName, roundName, match) {
+	matches.set(match.id, match);
+
 	var table = document.getElementById("matches");
 	var row = table.insertRow(-1);
 
@@ -53,8 +57,8 @@ function addMatchToTable(tournamentName, roundName, match) {
 			+ match.id
 			+ "\" type=\"text\" /><input	id=\"team2Score_"
 			+ match.id
-			+ "\" type=\"text\" /><input type=\"button\" value=\"Set score\" onclick=\"setScore("
-			+ match + ")\" /></form>";
+			+ "\" type=\"text\" /><input type=\"button\" value=\"Set score\" onclick=\"setScore('"
+			+ match.id + "')\" /></form>";
 }
 
 function putRound() {
@@ -72,12 +76,12 @@ function postTournament() {
 	postContent("http://localhost:8080/tournaments", body);
 }
 
-function setScore(match) {
-	var team1Score = document.getElementById("team1Score_" + match.id);
-	var team2Score = document.getElementById("team2Score_" + match.id);
+function setScore(matchId) {
+	var team1Score = document.getElementById("team1Score_" + matchId).value;
+	var team2Score = document.getElementById("team2Score_" + matchId).value;
 
-	match.team1Score = team1Score;
-	match.team2Score = team2Score;
+	matches.get(matchId).team1Score = team1Score;
+	matches.get(matchId).team2Score = team2Score;
 
-	putContent("http://localhost:8080/matches", match);
+	putContent("http://localhost:8080/matches", matches.get(matchId));
 }
