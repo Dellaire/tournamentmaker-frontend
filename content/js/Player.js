@@ -1,3 +1,5 @@
+var players = new Map();
+
 function fillPlayerTable() {
 	document.getElementById("players").innerHTML = "";
 	addTableHeader();
@@ -24,6 +26,8 @@ function addTableHeader() {
 }
 
 function addPlayerToTable(player) {
+	players.set(player.id, player);
+
 	var table = document.getElementById("players");
 	var row = table.insertRow(-1);
 
@@ -32,10 +36,17 @@ function addPlayerToTable(player) {
 	var eloCell = row.insertCell(2);
 	var activeCell = row.insertCell(3);
 
+	var checked = "";
+	if (player.active) {
+		checked = "checked=\"checked\"";
+	}
+
 	idCell.innerHTML = player.id;
 	nameCell.innerHTML = player.name;
 	eloCell.innerHTML = player.elo;
-	activeCell.innerHTML = player.active;
+	activeCell.innerHTML = "<form><input type=\"checkbox\" id=\"activePlayer_"
+			+ player.id + "\" value=\"active\" " + checked
+			+ " onClick=\"putPlayer('" + player.id + "')\"></form>";
 }
 
 function postPlayer() {
@@ -45,4 +56,11 @@ function postPlayer() {
 	};
 
 	postContent("http://localhost:8081/player", body);
+}
+
+function putPlayer(playerId) {
+	var player = players.get(playerId);
+	player.active = document.getElementById("activePlayer_" + playerId).checked;
+
+	putContent("http://localhost:8081/player", player);
 }
