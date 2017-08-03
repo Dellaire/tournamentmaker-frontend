@@ -12,7 +12,7 @@ function fillPlayerTable() {
 
 function addTableHeader() {
 	var table = document.getElementById("players");
-	var row = table.insertRow(0);
+	var row = table.insertRow(-1);
 
 	var idCell = row.insertCell(0);
 	var nameCell = row.insertCell(1);
