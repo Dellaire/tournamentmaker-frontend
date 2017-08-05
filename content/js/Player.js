@@ -14,12 +14,10 @@ function addTableHeader() {
 	var table = document.getElementById("players");
 	var row = table.insertRow(-1);
 
-	var idCell = row.insertCell(0);
-	var nameCell = row.insertCell(1);
-	var eloCell = row.insertCell(2);
-	var activeCell = row.insertCell(3);
+	var nameCell = row.insertCell(0);
+	var eloCell = row.insertCell(1);
+	var activeCell = row.insertCell(2);
 
-	idCell.innerHTML = "ID";
 	nameCell.innerHTML = "Name";
 	eloCell.innerHTML = "Elo";
 	activeCell.innerHTML = "Active";
@@ -31,22 +29,26 @@ function addPlayerToTable(player) {
 	var table = document.getElementById("players");
 	var row = table.insertRow(-1);
 
-	var idCell = row.insertCell(0);
-	var nameCell = row.insertCell(1);
-	var eloCell = row.insertCell(2);
-	var activeCell = row.insertCell(3);
+	var nameCell = row.insertCell(0);
+	var eloCell = row.insertCell(1);
+	var activeCell = row.insertCell(2);
 
-	var checked = "";
+	var active = "";
+	var checkbox = "";
 	if (player.active) {
-		checked = "checked=\"checked\"";
+		active = "active";
+		checkbox = "src/checkbox_active.png";
+	} else {
+		active = "inactive";
+		checkbox = "src/checkbox_inactive.png";
 	}
 
-	idCell.innerHTML = player.id;
 	nameCell.innerHTML = player.name;
 	eloCell.innerHTML = player.elo;
-	activeCell.innerHTML = "<form><input type=\"checkbox\" id=\"activePlayer_"
-			+ player.id + "\" value=\"active\" " + checked
-			+ " onClick=\"putPlayer('" + player.id + "')\"></form>";
+
+	activeCell.innerHTML = "<img id=\"activePlayer_" + player.id + "\" src=\""
+			+ checkbox + "\" alt=\"" + active + "\" onClick=\"putPlayer('"
+			+ player.id + "')\">";
 }
 
 function postPlayer() {
@@ -60,7 +62,14 @@ function postPlayer() {
 
 function putPlayer(playerId) {
 	var player = players.get(playerId);
-	player.active = document.getElementById("activePlayer_" + playerId).checked;
+	if (document.getElementById("activePlayer_" + playerId).alt == "active") {
+		document.getElementById("activePlayer_" + playerId).alt = "inactive";
+		player.active = false;
+	} else {
+		document.getElementById("activePlayer_" + playerId).alt = "active";
+		player.active = true;
+	}
 
 	putContent("http://localhost:8081/player", player);
+	fillPlayerTable();
 }

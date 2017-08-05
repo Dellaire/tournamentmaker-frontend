@@ -5,18 +5,19 @@
 <style>
 div.tab {
 	overflow: hidden;
-	border: 1px solid #ccc;
+	border: 2px solid #ccc;
 	border-style: solid;
 	border-color: #42b3f4;
-	border-radius: 15px;
+	border-radius: 20px;
+	padding: 5px 5px;
 }
 
 button {
-	background-color: #eff9ff;
 	border-style: solid;
+	background-color: #42b3f4;
 	border-color: #42b3f4;
 	border-radius: 15px;
-	color: #42b3f4;
+	color: #ffffff;
 	padding: 5px 10px;
 	text-align: center;
 	text-decoration: none;
@@ -25,11 +26,32 @@ button {
 }
 
 input[type=button] {
-	background-color: #eff9ff;
+	border-style: solid;
+	background-color: #42b3f4;
+	border-color: #42b3f4;
+	border-radius: 15px;
+	color: #ffffff;
+	padding: 5px 10px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-weight: bold;
+	background-color: #42b3f4;
+	border-color: #42b3f4;
+	border-radius: 15px;
+	color: #ffffff;
+	border-color: #42b3f4;
+	border-radius: 15px;
+	color: #ffffff;
+	border-radius: 15px;
+	color: #ffffff;
+}
+
+input[type=text] {
+	width: 8px;
 	border-style: solid;
 	border-color: #42b3f4;
 	border-radius: 15px;
-	color: #42b3f4;
 	padding: 5px 10px;
 	text-align: center;
 	text-decoration: none;
@@ -82,8 +104,9 @@ table, th, td {
 				<td valign="top" style="border: none">Player name:</td>
 				<td style="border: none">
 					<form>
-						<input id="playerName" type="text" name="playerName" /><br /> <br />
-						<input type="button" value="Save player" onclick="postPlayer()" />
+						<input id="playerName" type="text" name="playerName"
+							style="width: 100px" /><br /> <br /> <input type="button"
+							value="Save player" onclick="postPlayer()" />
 					</form>
 				</td>
 			</tr>
@@ -107,10 +130,10 @@ table, th, td {
 				<td valign="top" style="border: none">Tournament name:</td>
 				<td style="border: none">
 					<form>
-						<input id="tournamentName" type="text" name="tournamentName" /><br />
-						<br /> <input type="button" value="New tournament"
-							onclick="postTournament()" /><br /> <input type="button"
-							value="New round" onclick="putRound()" />
+						<input id="tournamentName" type="text" name="tournamentName"
+							style="width: 100px" /><br /> <br /> <input type="button"
+							value="New tournament" onclick="postTournament()" /><br /> <input
+							type="button" value="New round" onclick="putRound()" />
 					</form>
 				</td>
 			</tr>

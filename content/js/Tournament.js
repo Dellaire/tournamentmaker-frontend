@@ -55,7 +55,7 @@ function addMatchToTable(tournamentName, roundName, match) {
 			+ match.team2.player2.name;
 	addScoreCell.innerHTML = "<form><input id=\"team1Score_"
 			+ match.id
-			+ "\" type=\"text\" /><input	id=\"team2Score_"
+			+ "\" type=\"text\" /><input id=\"team2Score_"
 			+ match.id
 			+ "\" type=\"text\" /><input type=\"button\" value=\"Set score\" onclick=\"setScore('"
 			+ match.id + "')\" /></form>";
