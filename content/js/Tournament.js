@@ -18,19 +18,7 @@ function fillMatchTable() {
 
 function addMatchesTableHeader() {
 	var table = document.getElementById("matches");
-	var row = table.insertRow(0);
-
-	var tournamentCell = row.insertCell(0);
-	var roundCell = row.insertCell(1);
-	var team1Cell = row.insertCell(2);
-	var scoreCell = row.insertCell(3);
-	var team2Cell = row.insertCell(4);
-
-	tournamentCell.innerHTML = "Tournament name";
-	roundCell.innerHTML = "Round name";
-	team1Cell.innerHTML = "Team 1";
-	scoreCell.innerHTML = "vs.";
-	team2Cell.innerHTML = "Team 2";
+	table.innerHTML = "<tr><th>Tournament name</th><th>Round name</th><th>Team 1</th><th>vs.</th><th>Team 2</th><th></th></tr>";
 }
 
 function addMatchToTable(tournamentName, roundName, match) {

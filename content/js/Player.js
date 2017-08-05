@@ -12,15 +12,7 @@ function fillPlayerTable() {
 
 function addTableHeader() {
 	var table = document.getElementById("players");
-	var row = table.insertRow(-1);
-
-	var nameCell = row.insertCell(0);
-	var eloCell = row.insertCell(1);
-	var activeCell = row.insertCell(2);
-
-	nameCell.innerHTML = "Name";
-	eloCell.innerHTML = "Elo";
-	activeCell.innerHTML = "Active";
+	table.innerHTML = "<tr><th>Name</th><th>Elo</th><th>Active</th></tr>";
 }
 
 function addPlayerToTable(player) {
