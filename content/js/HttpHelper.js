@@ -19,3 +19,11 @@ function putContent(url, body) {
 	xmlhttp.setRequestHeader("Content-Type", "application/json");
 	xmlhttp.send(JSON.stringify(body));
 }
+
+function headRessource(url) {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("HEAD", url, false);
+	xmlhttp.send();
+
+	return xmlhttp.status;
+}

@@ -1,19 +1,9 @@
 var matches = new Map();
 
 function fillMatchTable() {
-	document.getElementById("matches").innerHTML = "";
-	addMatchesTableHeader();
-
 	var tournaments = getContent("http://localhost:8080/tournaments");
-	for (var i = 0; i < tournaments.length; i++) {
-		for (var j = 0; j < tournaments[i].rounds.length; j++) {
-			for (var k = 0; k < tournaments[i].rounds[j].matches.length; k++) {
-				addMatchToTable(tournaments[i].id,
-						tournaments[i].rounds[j].name,
-						tournaments[i].rounds[j].matches[k]);
-			}
-		}
-	}
+	addTournamentList(tournaments);
+	changeTournament(tournaments);
 }
 
 function addMatchesTableHeader() {
@@ -49,19 +39,49 @@ function addMatchToTable(tournamentName, roundName, match) {
 			+ match.id + "')\" /></form>";
 }
 
+function addTournamentList(tournaments) {
+	var tournamentList = "";
+	for (var i = 0; i < tournaments.length; i++) {
+		tournamentList += "<option value=\"" + tournaments[i].id + "\">"
+				+ tournaments[i].id + "</option>"
+	}
+	document.getElementById("tournamentList").innerHTML = tournamentList;
+}
+
+function changeTournament(tournaments) {
+	var tournamentName = document.getElementById("tournamentList").value;
+
+	document.getElementById("matches").innerHTML = "";
+	addMatchesTableHeader(tournaments);
+
+	var tournament = getContent("http://localhost:8080/tournaments/"
+			+ tournamentName);
+	for (var j = 0; j < tournament.rounds.length; j++) {
+		for (var k = 0; k < tournament.rounds[j].matches.length; k++) {
+			addMatchToTable(tournament.id, tournament.rounds[j].name,
+					tournament.rounds[j].matches[k]);
+		}
+	}
+}
+
 function putRound() {
-	var tournamentName = document.getElementById("tournamentName").value;
-	putContent("http://localhost:8080/tournaments/" + tournamentName
-			+ "/rounds/generate", null);
+	var tournamentName = document.getElementById("tournamentList").value;
+	if (headRessource("http://localhost:8080/tournaments/" + tournamentName) == 302) {
+		putContent("http://localhost:8080/tournaments/" + tournamentName
+				+ "/rounds/generate", null);
+	} else {
+		console.log("The tournament with ID '" + tournamentName
+				+ "' does not exist.");
+	}
 }
 
 function postTournament() {
-	var tournamentName = document.getElementById("tournamentName").value;
-	var body = {
+	tournamentName = document.getElementById("tournamentName").value;
+	var newTournament = {
 		"id" : tournamentName
-	};
+	}
 
-	postContent("http://localhost:8080/tournaments", body);
+	postContent("http://localhost:8080/tournaments", newTournament);
 }
 
 function setScore(matchId) {
