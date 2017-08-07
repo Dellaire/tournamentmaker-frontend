@@ -1,14 +1,36 @@
 var matches = new Map();
+var nameOfCurrentTournament = "";
 
 function fillMatchTable() {
 	var tournaments = getContent("http://localhost:8080/tournaments");
 	addTournamentList(tournaments);
-	changeTournament(tournaments);
+
+	if (nameOfCurrentTournament != "") {
+		document.getElementById("tournamentList").value = nameOfCurrentTournament;
+	} else {
+		nameOfCurrentTournament = document.getElementById("tournamentList").value;
+	}
+
+	fillTable(tournaments);
 }
 
 function addMatchesTableHeader() {
 	var table = document.getElementById("matches");
 	table.innerHTML = "<tr><th>Tournament name</th><th>Round name</th><th>Team 1</th><th>vs.</th><th>Team 2</th><th></th></tr>";
+}
+
+function fillTable(tournaments) {
+	document.getElementById("matches").innerHTML = "";
+	addMatchesTableHeader(tournaments);
+
+	var tournament = getContent("http://localhost:8080/tournaments/"
+			+ nameOfCurrentTournament);
+	for (var j = 0; j < tournament.rounds.length; j++) {
+		for (var k = 0; k < tournament.rounds[j].matches.length; k++) {
+			addMatchToTable(tournament.id, tournament.rounds[j].name,
+					tournament.rounds[j].matches[k]);
+		}
+	}
 }
 
 function addMatchToTable(tournamentName, roundName, match) {
@@ -49,19 +71,9 @@ function addTournamentList(tournaments) {
 }
 
 function changeTournament(tournaments) {
-	var tournamentName = document.getElementById("tournamentList").value;
+	nameOfCurrentTournament = document.getElementById("tournamentList").value;
 
-	document.getElementById("matches").innerHTML = "";
-	addMatchesTableHeader(tournaments);
-
-	var tournament = getContent("http://localhost:8080/tournaments/"
-			+ tournamentName);
-	for (var j = 0; j < tournament.rounds.length; j++) {
-		for (var k = 0; k < tournament.rounds[j].matches.length; k++) {
-			addMatchToTable(tournament.id, tournament.rounds[j].name,
-					tournament.rounds[j].matches[k]);
-		}
-	}
+	fillTable(tournaments);
 }
 
 function putRound() {

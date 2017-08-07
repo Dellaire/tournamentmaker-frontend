@@ -56,12 +56,13 @@ function putPlayer(playerId) {
 	var player = players.get(playerId);
 	if (document.getElementById("activePlayer_" + playerId).alt == "active") {
 		document.getElementById("activePlayer_" + playerId).alt = "inactive";
+		document.getElementById("activePlayer_" + playerId).src = "src/checkbox_inactive.png";
 		player.active = false;
 	} else {
 		document.getElementById("activePlayer_" + playerId).alt = "active";
+		document.getElementById("activePlayer_" + playerId).src = "src/checkbox_active.png";
 		player.active = true;
 	}
 
 	putContent("http://localhost:8081/player", player);
-	fillPlayerTable();
 }
