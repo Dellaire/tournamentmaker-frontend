@@ -39,8 +39,9 @@ function addPlayerToTable(player) {
 	eloCell.innerHTML = player.elo;
 
 	activeCell.innerHTML = "<img id=\"activePlayer_" + player.id + "\" src=\""
-			+ checkbox + "\" alt=\"" + active + "\" onClick=\"putPlayer('"
-			+ player.id + "')\">";
+			+ checkbox + "\" alt=\"" + active
+			+ "\" style=\"cursor:pointer\" onClick=\"putPlayer('" + player.id
+			+ "')\">";
 }
 
 function postPlayer() {
