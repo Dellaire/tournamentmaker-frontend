@@ -2,7 +2,7 @@ var players = new Map();
 
 function fillPlayerTable() {
 	document.getElementById("players").innerHTML = "";
-	addTableHeader();
+	addPlayerTableHeader();
 
 	var players = getContent("http://localhost:8081/player");
 	for (var i = 0; i < players.length; i++) {
@@ -10,7 +10,7 @@ function fillPlayerTable() {
 	}
 }
 
-function addTableHeader() {
+function addPlayerTableHeader() {
 	var table = document.getElementById("players");
 	table.innerHTML = "<tr><th>Name</th><th>Elo</th><th>Active</th></tr>";
 }

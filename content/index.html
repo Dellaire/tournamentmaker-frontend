@@ -102,12 +102,13 @@ th {
 
 	<div class="tab">
 		<button class="tablinks" onclick="openTabPlayer(event)">Player</button>
+		<button class="tablinks" onclick="openTabTable(event)">Table</button>
 		<button class="tablinks" onclick="openTabTournament(event)">Tournament</button>
 	</div>
 
 	<div id="player" class="tabcontent">
 
-		<h3>List of all Players</h3>
+		<h3>List of all players</h3>
 		<table id="players"></table>
 
 		<br />
@@ -125,8 +126,27 @@ th {
 		</table>
 		<br />
 
-		<div id="debug"></div>
+	</div>
 
+	<div id="table" class="tabcontent">
+
+		<h3>List of all tables</h3>
+		<table id="tables"></table>
+
+		<br />
+		<table>
+			<tr>
+				<td valign="top" style="border: none">Player name:</td>
+				<td style="border: none">
+					<form>
+						<input id="tableName" type="text" name="playerName"
+							style="width: 100px" /><br /> <br /> <input type="button"
+							value="Save table" onclick="postTable()" />
+					</form>
+				</td>
+			</tr>
+		</table>
+		<br />
 
 	</div>
 
@@ -156,25 +176,33 @@ th {
 		</table>
 		<br />
 
-		<div id="debug2"></div>
-
 	</div>
 
 	<script src="js/Player.js"></script>
+	<script src="js/Table.js"></script>
 	<script src="js/Tournament.js"></script>
 	<script src="js/HttpHelper.js"></script>
-	<script src="js/Styles.js"></script>
 	<script>
 		function openTabPlayer(event) {
 			document.getElementById("tournament").style.display = "none";
 			document.getElementById("player").style.display = "block";
+			document.getElementById("table").style.display = "none";
 
 			fillPlayerTable();
+		}
+
+		function openTabTable(event) {
+			document.getElementById("tournament").style.display = "none";
+			document.getElementById("player").style.display = "none";
+			document.getElementById("table").style.display = "block";
+
+			fillTableTable();
 		}
 
 		function openTabTournament(event) {
 			document.getElementById("tournament").style.display = "block";
 			document.getElementById("player").style.display = "none";
+			document.getElementById("table").style.display = "none";
 
 			fillMatchTable();
 		}
