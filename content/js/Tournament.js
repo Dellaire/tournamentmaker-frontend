@@ -16,7 +16,7 @@ function fillMatchTable() {
 
 function addMatchesTableHeader() {
 	var table = document.getElementById("matches");
-	table.innerHTML = "<tr><th>Tournament name</th><th>Round name</th><th>Team 1</th><th>vs.</th><th>Team 2</th><th></th></tr>";
+	table.innerHTML = "<tr><th>Tournament name</th><th>Round name</th><th>Team 1</th><th>vs.</th><th>Team 2</th><th>Table</th><th></th></tr>";
 }
 
 function fillTable(tournaments) {
@@ -44,7 +44,8 @@ function addMatchToTable(tournamentName, roundName, match) {
 	var team1Cell = row.insertCell(2);
 	var scoreCell = row.insertCell(3);
 	var team2Cell = row.insertCell(4);
-	var addScoreCell = row.insertCell(5);
+	var tableCell = row.insertCell(5);
+	var addScoreCell = row.insertCell(6);
 
 	tournamentCell.innerHTML = tournamentName;
 	roundCell.innerHTML = roundName;
@@ -53,6 +54,7 @@ function addMatchToTable(tournamentName, roundName, match) {
 	scoreCell.innerHTML = match.team1Score + " : " + match.team2Score;
 	team2Cell.innerHTML = match.team2.player1.name + " + "
 			+ match.team2.player2.name;
+	tableCell.innerHTML = match.tableName;
 	addScoreCell.innerHTML = "<form><input id=\"team1Score_"
 			+ match.id
 			+ "\" type=\"text\" /><input id=\"team2Score_"
