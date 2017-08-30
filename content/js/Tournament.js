@@ -25,10 +25,12 @@ function fillTable(tournaments) {
 
 	var tournament = getContent("http://localhost:8080/tournaments/"
 			+ nameOfCurrentTournament);
-	for (var j = 0; j < tournament.rounds.length; j++) {
-		for (var k = 0; k < tournament.rounds[j].matches.length; k++) {
-			addMatchToTable(tournament.id, tournament.rounds[j].name,
-					tournament.rounds[j].matches[k]);
+	if (tournament.rounds != null) {
+		for (var j = 0; j < tournament.rounds.length; j++) {
+			for (var k = 0; k < tournament.rounds[j].matches.length; k++) {
+				addMatchToTable(tournament.id, tournament.rounds[j].name,
+						tournament.rounds[j].matches[k]);
+			}
 		}
 	}
 }
@@ -56,11 +58,15 @@ function addMatchToTable(tournamentName, roundName, match) {
 			+ match.team2.player2.name;
 	tableCell.innerHTML = match.tableName;
 	addScoreCell.innerHTML = "<form><input id=\"team1Score_"
+			+ roundName
+			+ "_"
 			+ match.id
 			+ "\" type=\"text\" /><input id=\"team2Score_"
+			+ roundName
+			+ "_"
 			+ match.id
 			+ "\" type=\"text\" /><input type=\"button\" value=\"Set score\" onclick=\"setScore('"
-			+ match.id + "')\" /></form>";
+			+ roundName + "', '" + match.id + "')\" /></form>";
 }
 
 function addTournamentList(tournaments) {
@@ -98,12 +104,15 @@ function postTournament() {
 	postContent("http://localhost:8080/tournaments", newTournament);
 }
 
-function setScore(matchId) {
-	var team1Score = document.getElementById("team1Score_" + matchId).value;
-	var team2Score = document.getElementById("team2Score_" + matchId).value;
+function setScore(roundName, matchId) {
+	var team1Score = document.getElementById("team1Score_" + roundName + "_"
+			+ matchId).value;
+	var team2Score = document.getElementById("team2Score_" + roundName + "_"
+			+ matchId).value;
 
 	matches.get(matchId).team1Score = team1Score;
 	matches.get(matchId).team2Score = team2Score;
 
-	putContent("http://localhost:8080/matches", matches.get(matchId));
+	putContent("http://localhost:8080/tournaments/" + nameOfCurrentTournament
+			+ "/rounds/" + roundName + "/matches", matches.get(matchId));
 }
