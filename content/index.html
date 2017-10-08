@@ -104,6 +104,7 @@ th {
 		<button class="tablinks" onclick="openTabPlayer(event)">Player</button>
 		<button class="tablinks" onclick="openTabTable(event)">Table</button>
 		<button class="tablinks" onclick="openTabTournament(event)">Tournament</button>
+		<button class="tablinks" onclick="openTabRanking(event)">Ranking</button>
 	</div>
 
 	<div id="player" class="tabcontent">
@@ -178,15 +179,28 @@ th {
 
 	</div>
 
+	<div id="ranking" class="tabcontent">
+
+		<h3>
+			Current tournament: <select id="tournamentList2"
+				onchange="changeTournament()"></select>
+		</h3>
+
+		<table id="rankings"></table>
+
+	</div>
+
 	<script src="js/Player.js"></script>
 	<script src="js/Table.js"></script>
 	<script src="js/Tournament.js"></script>
+	<script src="js/Ranking.js"></script>
 	<script src="js/HttpHelper.js"></script>
 	<script>
 		function openTabPlayer(event) {
 			document.getElementById("tournament").style.display = "none";
 			document.getElementById("player").style.display = "block";
 			document.getElementById("table").style.display = "none";
+			document.getElementById("ranking").style.display = "none";
 
 			fillPlayerTable();
 		}
@@ -195,6 +209,7 @@ th {
 			document.getElementById("tournament").style.display = "none";
 			document.getElementById("player").style.display = "none";
 			document.getElementById("table").style.display = "block";
+			document.getElementById("ranking").style.display = "none";
 
 			fillTableTable();
 		}
@@ -203,8 +218,18 @@ th {
 			document.getElementById("tournament").style.display = "block";
 			document.getElementById("player").style.display = "none";
 			document.getElementById("table").style.display = "none";
+			document.getElementById("ranking").style.display = "none";
 
 			fillMatchTable();
+		}
+
+		function openTabRanking(event) {
+			document.getElementById("tournament").style.display = "none";
+			document.getElementById("player").style.display = "none";
+			document.getElementById("table").style.display = "none";
+			document.getElementById("ranking").style.display = "block";
+
+			fillRankingTable();
 		}
 	</script>
 
