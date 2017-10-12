@@ -2,7 +2,7 @@ var statistics = new Map();
 var nameOfCurrentTournament2 = "";
 
 function fillRankingTable() {
-	var tournaments = getContent("http://localhost:8080/tournaments");
+	var tournaments = getContent("http://localhost:8085/tournaments");
 	addTournamentList2(tournaments);
 
 	if (nameOfCurrentTournament2 != "") {
@@ -23,7 +23,7 @@ function fillRTable(tournaments) {
 	document.getElementById("rankings").innerHTML = "";
 	addRankingsTableHeader(tournaments);
 
-	var tournament = getContent("http://localhost:8084/ranking/"
+	var tournament = getContent("http://localhost:8085/ranking/"
 			+ nameOfCurrentTournament2);
 	for (var i = 0; i < tournament.length; i++) {
 		addStatisticToTable(tournament[i])

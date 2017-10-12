@@ -4,7 +4,7 @@ function fillPlayerTable() {
 	document.getElementById("players").innerHTML = "";
 	addPlayerTableHeader();
 
-	var players = getContent("http://localhost:8081/player");
+	var players = getContent("http://localhost:8085/player");
 	for (var i = 0; i < players.length; i++) {
 		addPlayerToTable(players[i]);
 	}
@@ -50,7 +50,7 @@ function postPlayer() {
 		"name" : playerName
 	};
 
-	postContent("http://localhost:8081/player", body);
+	postContent("http://localhost:8085/player", body);
 }
 
 function putPlayer(playerId) {
@@ -65,5 +65,5 @@ function putPlayer(playerId) {
 		player.active = true;
 	}
 
-	putContent("http://localhost:8081/player", player);
+	putContent("http://localhost:8085/player", player);
 }

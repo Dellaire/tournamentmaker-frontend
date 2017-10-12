@@ -2,7 +2,7 @@ var matches = new Map();
 var nameOfCurrentTournament = "";
 
 function fillMatchTable() {
-	var tournaments = getContent("http://localhost:8080/tournaments");
+	var tournaments = getContent("http://localhost:8085/tournaments");
 	addTournamentList(tournaments);
 
 	if (nameOfCurrentTournament != "") {
@@ -23,7 +23,7 @@ function fillTable(tournaments) {
 	document.getElementById("matches").innerHTML = "";
 	addMatchesTableHeader(tournaments);
 
-	var tournament = getContent("http://localhost:8080/tournaments/"
+	var tournament = getContent("http://localhost:8085/tournaments/"
 			+ nameOfCurrentTournament);
 	if (tournament.rounds != null) {
 		for (var j = 0; j < tournament.rounds.length; j++) {
@@ -86,8 +86,8 @@ function changeTournament(tournaments) {
 
 function putRound() {
 	var tournamentName = document.getElementById("tournamentList").value;
-	if (headRessource("http://localhost:8080/tournaments/" + tournamentName) == 302) {
-		putContent("http://localhost:8080/tournaments/" + tournamentName
+	if (headRessource("http://localhost:8085/tournaments/" + tournamentName) == 302) {
+		putContent("http://localhost:8085/tournaments/" + tournamentName
 				+ "/rounds/generate", null);
 	} else {
 		console.log("The tournament with ID '" + tournamentName
@@ -101,7 +101,7 @@ function postTournament() {
 		"id" : tournamentName
 	}
 
-	postContent("http://localhost:8080/tournaments", newTournament);
+	postContent("http://localhost:8085/tournaments", newTournament);
 }
 
 function setScore(roundName, matchId) {
@@ -113,6 +113,6 @@ function setScore(roundName, matchId) {
 	matches.get(matchId).team1Score = team1Score;
 	matches.get(matchId).team2Score = team2Score;
 
-	putContent("http://localhost:8080/tournaments/" + nameOfCurrentTournament
+	putContent("http://localhost:8085/tournaments/" + nameOfCurrentTournament
 			+ "/rounds/" + roundName + "/matches", matches.get(matchId));
 }

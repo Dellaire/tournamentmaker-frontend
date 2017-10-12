@@ -4,7 +4,7 @@ function fillTableTable() {
 	document.getElementById("tables").innerHTML = "";
 	addTableTableHeader();
 
-	var tables = getContent("http://localhost:8083/table");
+	var tables = getContent("http://localhost:8085/table");
 	for (var i = 0; i < tables.length; i++) {
 		addTableToTable(tables[i]);
 	}
@@ -47,7 +47,7 @@ function postTable() {
 		"name" : document.getElementById("tableName").value
 	};
 
-	postContent("http://localhost:8083/table", body);
+	postContent("http://localhost:8085/table", body);
 }
 
 function putTable(tableId) {
@@ -62,5 +62,5 @@ function putTable(tableId) {
 		table.active = true;
 	}
 
-	putContent("http://localhost:8083/table", table);
+	putContent("http://localhost:8085/table", table);
 }
