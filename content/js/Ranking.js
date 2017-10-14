@@ -23,10 +23,12 @@ function fillRTable(tournaments) {
 	document.getElementById("rankings").innerHTML = "";
 	addRankingsTableHeader(tournaments);
 
-	var tournament = getContent("http://localhost:8085/ranking/"
-			+ nameOfCurrentTournament2);
-	for (var i = 0; i < tournament.length; i++) {
-		addStatisticToTable(tournament[i])
+	if (nameOfCurrentTournament2 != "") {
+		var tournament = getContent("http://localhost:8085/ranking/"
+				+ nameOfCurrentTournament2);
+		for (var i = 0; i < tournament.length; i++) {
+			addStatisticToTable(tournament[i])
+		}
 	}
 }
 
