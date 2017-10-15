@@ -23,13 +23,15 @@ function fillTable(tournaments) {
 	document.getElementById("matches").innerHTML = "";
 	addMatchesTableHeader(tournaments);
 
-	var tournament = getContent("http://localhost:8085/tournaments/"
-			+ nameOfCurrentTournament);
-	if (tournament.rounds != null) {
-		for (var j = 0; j < tournament.rounds.length; j++) {
-			for (var k = 0; k < tournament.rounds[j].matches.length; k++) {
-				addMatchToTable(tournament.id, tournament.rounds[j].name,
-						tournament.rounds[j].matches[k]);
+	if (nameOfCurrentTournament != "") {
+		var tournament = getContent("http://localhost:8085/tournaments/"
+				+ nameOfCurrentTournament);
+		if (tournament.rounds != null) {
+			for (var j = 0; j < tournament.rounds.length; j++) {
+				for (var k = 0; k < tournament.rounds[j].matches.length; k++) {
+					addMatchToTable(tournament.id, tournament.rounds[j].name,
+							tournament.rounds[j].matches[k]);
+				}
 			}
 		}
 	}
