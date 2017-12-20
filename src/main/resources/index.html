@@ -95,6 +95,8 @@ th {
 	display: none;
 }
 </style>
+<meta name="_csrf" content="${X-CSRF-TOKEN}" />
+<meta name="_csrf_header" content="${X-CSRF-HEADER}" />
 </head>
 <body>
 
@@ -195,6 +197,8 @@ th {
 	<script src="js/Tournament.js"></script>
 	<script src="js/Ranking.js"></script>
 	<script src="js/HttpHelper.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script>
 		function openTabPlayer(event) {
 			document.getElementById("tournament").style.display = "none";
