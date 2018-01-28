@@ -4,10 +4,19 @@ function fillPlayerTable() {
 	document.getElementById("players").innerHTML = "";
 	addPlayerTableHeader();
 
-	var players = getContent("http://localhost:8085/player");
-	for (var i = 0; i < players.length; i++) {
-		addPlayerToTable(players[i]);
-	}
+	var players;
+	var func = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			players = JSON.parse(this.responseText);
+			for (var i = 0; i < players.length; i++) {
+				addPlayerToTable(players[i]);
+			}
+			
+			var token = this.getResponseHeader("X-CSRF-TOKEN")
+			document.querySelector('meta[name="_csrf"]').setAttribute("content", token);
+		}
+	};
+	getContentAsync("http://localhost:8085/player", func);
 }
 
 function addPlayerTableHeader() {
@@ -49,8 +58,8 @@ function postPlayer() {
 	var body = {
 		"name" : playerName
 	};
-
-	postContent("http://localhost:8085/player", body);
+	
+	postContentAsync("http://localhost:8085/player", body);
 }
 
 function putPlayer(playerId) {
@@ -65,5 +74,5 @@ function putPlayer(playerId) {
 		player.active = true;
 	}
 
-	putContent("http://localhost:8085/player", player);
+	putContentAsync("http://localhost:8085/player", player);
 }
