@@ -1,6 +1,28 @@
 <h2>Players</h2>
-<ul class="heroes">
-	<li *ngFor="let player of players">
-		{{player.id}} - {{player.name}}
-	</li>
-</ul>
+
+<mat-table [dataSource]="players">
+	<ng-container matColumnDef="active">
+		<mat-header-cell *matHeaderCellDef>Active</mat-header-cell>
+		<mat-cell *matCellDef="let player">
+			<mat-checkbox [(checked)]="player.active"></mat-checkbox>
+		</mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="name">
+		<mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+		<mat-cell *matCellDef="let player">{{player.name}}</mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="id">
+		<mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+		<mat-cell *matCellDef="let player">{{player.id}}</mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="elo">
+		<mat-header-cell *matHeaderCellDef>Elo</mat-header-cell>
+		<mat-cell *matCellDef="let player">{{player.elo}}</mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="score">
+		<mat-header-cell *matHeaderCellDef>Score</mat-header-cell>
+		<mat-cell *matCellDef="let player">{{player.score}}</mat-cell>
+	</ng-container>
+	<mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+	<mat-row *matRowDef="let rowData; columns: columnsToDisplay"></mat-row>
+</mat-table>

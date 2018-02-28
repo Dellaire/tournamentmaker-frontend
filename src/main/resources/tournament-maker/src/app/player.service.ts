@@ -11,8 +11,11 @@ export class PlayerService {
   
 	getPlayers(): Observable<Player[]> {
 	
-		//var player: Player = {id: '1', name: 'Henry', elo: 0, score: 0, active: true};
+		var player1: Player = {id: '1', name: 'Henry', elo: 0, score: 0, active: true};
+		var player2: Player = {id: '2', name: 'Hung', elo: 0, score: 0, active: false};
 	
-		return this.http.get<Player[]>('http://localhost:8085/player');
+		//return this.http.get<Player[]>('http://localhost:8085/player');
+		
+		return of([player1, player2]);
 	}
 }

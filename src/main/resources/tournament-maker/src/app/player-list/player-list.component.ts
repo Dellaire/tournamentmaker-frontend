@@ -10,6 +10,8 @@ import { PlayerService } from '../player.service';
 export class PlayerListComponent implements OnInit {
 
 	players: Player[];
+	
+	columnsToDisplay = ['name', 'elo', 'score', 'active'];
 
 	constructor(private playerService: PlayerService) { }
 
