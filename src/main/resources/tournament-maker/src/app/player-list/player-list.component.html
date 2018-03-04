@@ -1,10 +1,10 @@
 <h2>Players</h2>
 
-<mat-table [dataSource]="players">
+<mat-table [dataSource]="player">
 	<ng-container matColumnDef="active">
 		<mat-header-cell *matHeaderCellDef>Active</mat-header-cell>
 		<mat-cell *matCellDef="let player">
-			<mat-checkbox [(checked)]="player.active"></mat-checkbox>
+			<mat-checkbox [(checked)]="player.active" (change)="putPlayer(player,$event.checked)"></mat-checkbox>
 		</mat-cell>
 	</ng-container>
 	<ng-container matColumnDef="name">

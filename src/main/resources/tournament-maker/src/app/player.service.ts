@@ -9,13 +9,18 @@ export class PlayerService {
 
 	constructor(private http: HttpClient) { }
   
-	getPlayers(): Observable<Player[]> {
+	getPlayer(): Observable<Player[]> {
 	
-		var player1: Player = {id: '1', name: 'Henry', elo: 0, score: 0, active: true};
-		var player2: Player = {id: '2', name: 'Hung', elo: 0, score: 0, active: false};
-	
-		//return this.http.get<Player[]>('http://localhost:8085/player');
+		//var player1: Player = {id: '1', name: 'Henry', elo: 0, score: 0, active: true};
+		//var player2: Player = {id: '2', name: 'Hung', elo: 0, score: 0, active: false};		
 		
-		return of([player1, player2]);
+		//return of([player1, player2]);
+		
+		return this.http.get<Player[]>('http://localhost:8085/player');
+	}
+	
+	putPlayer(player: Player): void {
+		
+		this.http.put('http://localhost:8085/player', player).toPromise();
 	}
 }

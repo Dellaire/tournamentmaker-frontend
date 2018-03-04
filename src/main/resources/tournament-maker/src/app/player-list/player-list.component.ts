@@ -9,17 +9,24 @@ import { PlayerService } from '../player.service';
 })
 export class PlayerListComponent implements OnInit {
 
-	players: Player[];
+	player: Player[];
 	
 	columnsToDisplay = ['name', 'elo', 'score', 'active'];
 
 	constructor(private playerService: PlayerService) { }
 
 	ngOnInit() {
-		this.getPlayers();
+		this.getPlayer();
 	}
 
-	getPlayers(): void {
-		this.playerService.getPlayers().subscribe(players => this.players = players);
+	getPlayer(): void {
+		this.playerService.getPlayer().subscribe(player => this.player = player);
+	}
+	
+	putPlayer(player: Player, active: boolean): void {
+		
+		//console.log(active);
+		player.active = active;
+		this.playerService.putPlayer(player);
 	}
 }
