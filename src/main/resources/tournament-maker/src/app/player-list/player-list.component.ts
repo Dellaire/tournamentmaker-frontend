@@ -9,7 +9,7 @@ import { PlayerService } from '../player.service';
 })
 export class PlayerListComponent implements OnInit {
 
-	player: Player[];
+	player: Player[] = [];
 	
 	columnsToDisplay = ['name', 'elo', 'score', 'active'];
 
@@ -20,7 +20,17 @@ export class PlayerListComponent implements OnInit {
 	}
 
 	getPlayer(): void {
+		
+		//this.player.splice(0, this.player.length);
+		//this.playerService.getPlayer().subscribe(player => player.forEach(onePlayer => this.player.push(onePlayer)));
 		this.playerService.getPlayer().subscribe(player => this.player = player);
+		console.log(this.player);
+	}
+	
+	postPlayer(playerName: string): void {
+		
+		var player: Player = {id: null, name: playerName, elo: 0, score: 0, active: true};
+		this.playerService.postPlayer(player);
 	}
 	
 	putPlayer(player: Player, active: boolean): void {

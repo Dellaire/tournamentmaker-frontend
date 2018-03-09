@@ -1,6 +1,6 @@
 <h2>Players</h2>
 
-<mat-table [dataSource]="player">
+<mat-table [(dataSource)]="player">
 	<ng-container matColumnDef="active">
 		<mat-header-cell *matHeaderCellDef>Active</mat-header-cell>
 		<mat-cell *matCellDef="let player">
@@ -26,3 +26,8 @@
 	<mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
 	<mat-row *matRowDef="let rowData; columns: columnsToDisplay"></mat-row>
 </mat-table>
+
+<mat-form-field class="example-form-field">
+  <input #v matInput type="text" placeholder="Player name"/><br/>
+</mat-form-field>
+<button mat-button mat-raised-button (click)="postPlayer(v.value)">Add player</button>
