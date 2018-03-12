@@ -8,14 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class PlayerService {
 
-	//player: Player[] = [];
-
 	constructor(private http: HttpClient) { }
-  
-	updatePlayer(): void {
-		
-		this.http.get<Player[]>('http://localhost:8085/player').subscribe(player => this.player = player);
-	}
   
 	getPlayer(): Observable<Player[]> {
 	
@@ -24,20 +17,16 @@ export class PlayerService {
 		
 		//return of([player1, player2]);
 		
-		//this.player.splice(0, this.player.length);
-		//this.http.get<Player[]>('http://localhost:8085/player').subscribe(player => player.forEach(onePlayer => this.player.push(onePlayer)));
-		
 		return this.http.get<Player[]>('http://localhost:8085/player');
 	}
 	
-	postPlayer(player: Player): void {
+	postPlayer(player: Player): Observable<Player> {
 		
-		console.log(player);
-		this.http.post('http://localhost:8085/player', player).toPromise();
+		return this.http.post<Player>('http://localhost:8085/player', player);
 	}
 	
-	putPlayer(player: Player): void {
+	putPlayer(player: Player): Observable<Player> {
 		
-		this.http.put('http://localhost:8085/player', player).toPromise();
+		return this.http.put<Player>('http://localhost:8085/player', player);
 	}
 }

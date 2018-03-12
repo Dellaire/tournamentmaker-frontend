@@ -16,26 +16,23 @@ export class PlayerListComponent implements OnInit {
 	constructor(private playerService: PlayerService) { }
 
 	ngOnInit() {
+		
 		this.getPlayer();
 	}
 
 	getPlayer(): void {
 		
-		//this.player.splice(0, this.player.length);
-		//this.playerService.getPlayer().subscribe(player => player.forEach(onePlayer => this.player.push(onePlayer)));
 		this.playerService.getPlayer().subscribe(player => this.player = player);
-		console.log(this.player);
 	}
 	
 	postPlayer(playerName: string): void {
 		
 		var player: Player = {id: null, name: playerName, elo: 0, score: 0, active: true};
-		this.playerService.postPlayer(player);
+		this.playerService.postPlayer(player).subscribe(postedPlayer => this.getPlayer());
 	}
 	
 	putPlayer(player: Player, active: boolean): void {
 		
-		//console.log(active);
 		player.active = active;
 		this.playerService.putPlayer(player);
 	}
