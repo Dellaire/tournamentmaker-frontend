@@ -1,0 +1,21 @@
+<h2>Tables</h2>
+
+<mat-table [(dataSource)]="tables">
+	<ng-container matColumnDef="active">
+		<mat-header-cell *matHeaderCellDef>Active</mat-header-cell>
+		<mat-cell *matCellDef="let table">
+			<mat-checkbox [(checked)]="table.active" (change)="putTable(table,$event.checked)"></mat-checkbox>
+		</mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="name">
+		<mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+		<mat-cell *matCellDef="let table">{{table.name}}</mat-cell>
+	</ng-container>
+	<mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+	<mat-row *matRowDef="let rowData; columns: columnsToDisplay"></mat-row>
+</mat-table>
+
+<mat-form-field class="add-table">
+  <input #v matInput type="text" placeholder="Table name"/><br/>
+</mat-form-field>
+<button mat-button mat-raised-button (click)="postTable(v.value)">Add player</button>

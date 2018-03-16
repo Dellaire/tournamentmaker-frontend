@@ -34,6 +34,6 @@ export class PlayerListComponent implements OnInit {
 	putPlayer(player: Player, active: boolean): void {
 		
 		player.active = active;
-		this.playerService.putPlayer(player);
+		this.playerService.putPlayer(player).toPromise();
 	}
 }

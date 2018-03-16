@@ -11,12 +11,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppComponent } from './app.component';
 import { PlayerListComponent } from './player-list/player-list.component';
 import { PlayerService } from './player.service';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { TablesComponent } from './tables/tables.component';
+import { TablesService } from './tables.service';
 
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		PlayerListComponent
+		PlayerListComponent,
+		TablesComponent
 	],
 	imports: [
 		BrowserModule,
@@ -26,9 +30,10 @@ import { PlayerService } from './player.service';
 		MatCheckboxModule,
 		MatInputModule,
 		MatButtonModule,
-		MatFormFieldModule
+		MatFormFieldModule,
+		AppRoutingModule
 	],
-	providers: [PlayerService],
+	providers: [PlayerService, TablesService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

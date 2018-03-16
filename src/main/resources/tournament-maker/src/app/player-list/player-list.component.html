@@ -1,4 +1,4 @@
-<h2>Player</h2>
+<h1>Player</h1>
 
 <mat-table [(dataSource)]="player">
 	<ng-container matColumnDef="active">
@@ -27,7 +27,7 @@
 	<mat-row *matRowDef="let rowData; columns: columnsToDisplay"></mat-row>
 </mat-table>
 
-<mat-form-field class="example-form-field">
+<mat-form-field class="add-player">
   <input #v matInput type="text" placeholder="Player name"/><br/>
 </mat-form-field>
 <button mat-button mat-raised-button (click)="postPlayer(v.value)">Add player</button>
