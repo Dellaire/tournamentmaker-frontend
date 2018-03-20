@@ -1,0 +1,34 @@
+<h2>Ranking</h2>
+
+<mat-table [(dataSource)]="playerStatistics">
+	<ng-container matColumnDef="playerName">
+		<mat-header-cell *matHeaderCellDef>Player name</mat-header-cell>
+		<mat-cell *matCellDef="let playerStatistic">{{playerStatistic.playerName}}</mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="wins">
+		<mat-header-cell *matHeaderCellDef>Wins</mat-header-cell>
+		<mat-cell *matCellDef="let playerStatistic">{{playerStatistic.wins}}</mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="defeats">
+		<mat-header-cell *matHeaderCellDef>Defeats</mat-header-cell>
+		<mat-cell *matCellDef="let playerStatistic">{{playerStatistic.defeats}}</mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="draws">
+		<mat-header-cell *matHeaderCellDef>Draws</mat-header-cell>
+		<mat-cell *matCellDef="let playerStatistic">{{playerStatistic.draws}}</mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="goals">
+		<mat-header-cell *matHeaderCellDef>Goals</mat-header-cell>
+		<mat-cell *matCellDef="let playerStatistic">{{playerStatistic.goals}}</mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="counterGoals">
+		<mat-header-cell *matHeaderCellDef>Counter goals</mat-header-cell>
+		<mat-cell *matCellDef="let playerStatistic">{{playerStatistic.counterGoals}}</mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="score">
+		<mat-header-cell *matHeaderCellDef>Score</mat-header-cell>
+		<mat-cell *matCellDef="let playerStatistic">{{playerStatistic.score}}</mat-cell>
+	</ng-container>
+	<mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+	<mat-row *matRowDef="let rowData; columns: columnsToDisplay"></mat-row>
+</mat-table>

@@ -14,13 +14,16 @@ import { PlayerService } from './player.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { TablesComponent } from './tables/tables.component';
 import { TablesService } from './tables.service';
+import { RankingComponent } from './ranking/ranking.component';
+import { RankingService } from './ranking.service';
 
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		PlayerListComponent,
-		TablesComponent
+		TablesComponent,
+		RankingComponent
 	],
 	imports: [
 		BrowserModule,
@@ -33,7 +36,7 @@ import { TablesService } from './tables.service';
 		MatFormFieldModule,
 		AppRoutingModule
 	],
-	providers: [PlayerService, TablesService],
+	providers: [PlayerService, TablesService, RankingService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
