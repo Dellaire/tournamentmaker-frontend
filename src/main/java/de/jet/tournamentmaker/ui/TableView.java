@@ -1,5 +1,6 @@
 package de.jet.tournamentmaker.ui;
 
+import com.vaadin.navigator.View;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Notification;
@@ -8,7 +9,7 @@ import com.vaadin.ui.VerticalLayout;
 import de.jet.tournamentmaker.model.Table;
 import de.jet.tournamentmaker.service.TableService;
 
-public class TableView extends VerticalLayout {
+public class TableView extends VerticalLayout implements View {
 
 	private static final long serialVersionUID = 674192927867917381L;
 
@@ -19,10 +20,9 @@ public class TableView extends VerticalLayout {
 		tableGrid.addColumn(Table::isActive).setCaption("Active");
 		tableGrid.setItems(tableService.getTables());
 
-		this.addComponent(new Button("Add Table", e -> Notification.show("Hello Spring+Vaadin user!")));
+		this.addComponent(new Button("Add Table", e -> {
+			this.getViewComponent().getUI().addWindow(new NewTableWindow(tableService, tableGrid));
+		}));
 		this.addComponent(tableGrid);
-
-		this.setWidth("400px");
-		this.setHeight("500px");
 	}
 }

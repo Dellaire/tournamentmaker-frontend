@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -26,6 +27,14 @@ public class TableService {
 	public List<Table> getTables() {
 
 		return restTemplate.exchange(this.url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Table>>() {
+		}).getBody();
+	}
+	
+	public Table postTable(Table table) {
+
+		HttpEntity<Table> playerEntity = new HttpEntity<Table>(table);
+
+		return restTemplate.exchange(this.url, HttpMethod.POST, playerEntity, new ParameterizedTypeReference<Table>() {
 		}).getBody();
 	}
 
