@@ -8,11 +8,11 @@ import com.vaadin.ui.VerticalLayout;
 import de.jet.tournamentmaker.model.Player;
 import de.jet.tournamentmaker.services.PlayerService;
 
-public class PlayerView extends VerticalLayout implements View {
+public class MatchesView extends VerticalLayout implements View {
 
-	private static final long serialVersionUID = -1574593816169880530L;
+	private static final long serialVersionUID = 8555180143866091055L;
 
-	public PlayerView(PlayerService playerService) {
+	public MatchesView(PlayerService playerService) {
 
 		Grid<Player> playerGrid = new Grid<>();
 		playerGrid.addColumn(Player::getName).setCaption("Name");

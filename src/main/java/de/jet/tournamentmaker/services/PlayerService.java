@@ -1,4 +1,4 @@
-package de.jet.tournamentmaker.service;
+package de.jet.tournamentmaker.services;
 
 import java.util.List;
 

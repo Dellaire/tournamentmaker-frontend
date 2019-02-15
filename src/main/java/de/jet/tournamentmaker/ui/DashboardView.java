@@ -5,10 +5,10 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.UI;
 
-import de.jet.tournamentmaker.service.PlayerService;
-import de.jet.tournamentmaker.service.TableService;
+import de.jet.tournamentmaker.services.PlayerService;
+import de.jet.tournamentmaker.services.TableService;
 
-@SpringUI(path = "dashboard")
+@SpringUI(path = "settings")
 public class DashboardView extends UI {
 
 	private static final long serialVersionUID = -4379971617421474789L;

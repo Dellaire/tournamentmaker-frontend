@@ -7,7 +7,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.Window;
 
 import de.jet.tournamentmaker.model.Player;
-import de.jet.tournamentmaker.service.PlayerService;
+import de.jet.tournamentmaker.services.PlayerService;
 
 public class NewPlayerWindow extends Window {
 

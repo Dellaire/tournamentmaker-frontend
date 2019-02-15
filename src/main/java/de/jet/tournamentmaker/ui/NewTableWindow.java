@@ -7,7 +7,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.Window;
 
 import de.jet.tournamentmaker.model.Table;
-import de.jet.tournamentmaker.service.TableService;
+import de.jet.tournamentmaker.services.TableService;
 
 public class NewTableWindow extends Window {
 

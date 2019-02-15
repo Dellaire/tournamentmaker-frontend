@@ -3,11 +3,10 @@ package de.jet.tournamentmaker.ui;
 import com.vaadin.navigator.View;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
 import de.jet.tournamentmaker.model.Table;
-import de.jet.tournamentmaker.service.TableService;
+import de.jet.tournamentmaker.services.TableService;
 
 public class TableView extends VerticalLayout implements View {
 
