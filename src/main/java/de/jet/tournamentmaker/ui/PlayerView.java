@@ -21,9 +21,11 @@ public class PlayerView extends VerticalLayout implements View {
 		playerGrid.addColumn(Player::isActive).setCaption("Active");
 		playerGrid.setItems(playerService.getPlayer());
 
-		this.addComponent(new Button("Add Player", e -> {
-			this.getViewComponent().getUI().addWindow(new NewPlayerWindow(playerService, playerGrid));
-		}));
+		Button addPlayer = new Button("Add Player");
+		addPlayer.addClickListener(clickEvent -> this.getViewComponent().getUI()
+				.addWindow(new NewPlayerWindow(playerService, playerGrid)));
+
+		this.addComponent(addPlayer);
 		this.addComponent(playerGrid);
 	}
 }

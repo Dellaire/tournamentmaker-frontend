@@ -1,7 +1,5 @@
 package de.jet.tournamentmaker.ui;
 
-import java.util.function.Consumer;
-
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
