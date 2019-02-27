@@ -1,13 +1,13 @@
 package de.jet.tournamentmaker.ui;
 
+import java.util.function.Consumer;
+
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.UI;
-
-import de.jet.tournamentmaker.services.PlayerService;
-import de.jet.tournamentmaker.services.TableService;
+import com.vaadin.ui.VerticalLayout;
 
 @SpringUI(path = "settings")
 @StyleSheet("style.scss")
@@ -15,22 +15,34 @@ public class DashboardView extends UI {
 
 	private static final long serialVersionUID = -4379971617421474789L;
 
-	private final PlayerService playerService;
-	private final TableService tableService;
+	private final NavigationBar navigationBar;
+	private final PlayerView playerView;
+	private final TableView tableView;
 
-	public DashboardView(PlayerService playerService, TableService tableService) {
+	public DashboardView(NavigationBar navigationBar, PlayerView playerView, TableView tableView) {
 
-		this.playerService = playerService;
-		this.tableService = tableService;
+		this.navigationBar = navigationBar;
+		this.playerView = playerView;
+		this.tableView = tableView;
+
+		Consumer<String> callback = (String tournamentName) -> {
+			this.playerView.reloadPlayer(tournamentName);
+		};
+
+		this.navigationBar.setCallback(callback);
 	}
 
 	@Override
 	protected void init(VaadinRequest request) {
 
-		HorizontalLayout content = new HorizontalLayout();
+		VerticalLayout content = new VerticalLayout();
 		this.setContent(content);
 
-		content.addComponent(new PlayerView(this.playerService));
-		content.addComponent(new TableView(this.tableService));
+		HorizontalLayout body = new HorizontalLayout();
+		body.addComponent(this.playerView);
+		body.addComponent(this.tableView);
+
+		content.addComponent(this.navigationBar);
+		content.addComponent(body);
 	}
 }

@@ -17,6 +17,7 @@ public class NewTableWindow extends Window {
 
 		this.setCaption("Add Table");
 		this.center();
+		this.setModal(true);
 
 		HorizontalLayout tableForm = new HorizontalLayout();
 
@@ -25,6 +26,7 @@ public class NewTableWindow extends Window {
 		confirm.addClickListener(event -> {
 			tableService.postTable(new Table().setName(tableName.getValue()));
 			tableGrid.setItems(tableService.getTables());
+			this.close();
 		});
 
 		tableForm.addComponent(tableName);

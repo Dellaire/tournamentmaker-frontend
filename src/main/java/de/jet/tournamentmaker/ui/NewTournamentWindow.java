@@ -15,6 +15,7 @@ public class NewTournamentWindow extends Window {
 
 		this.setCaption("Add Tournament");
 		this.center();
+		this.setModal(true);
 
 		HorizontalLayout tournamentForm = new HorizontalLayout();
 
@@ -23,6 +24,7 @@ public class NewTournamentWindow extends Window {
 		confirm.addClickListener(event -> {
 			tournamentService.postTournament(tournamentName.getValue());
 			notification.trigger();
+			this.close();
 		});
 
 		tournamentForm.addComponent(tournamentName);
