@@ -8,23 +8,32 @@ import com.vaadin.ui.Grid;
 import com.vaadin.ui.VerticalLayout;
 
 import de.jet.tournamentmaker.model.Table;
-import de.jet.tournamentmaker.services.TableService;
+import de.jet.tournamentmaker.services.TournamentService;
 
 @Component
 public class TableView extends VerticalLayout implements View {
 
 	private static final long serialVersionUID = 674192927867917381L;
 
-	public TableView(TableService tableService) {
+	private final Grid<Table> tableGrid = new Grid<Table>();
+	private final TournamentService tournamentService;
 
-		Grid<Table> tableGrid = new Grid<>();
-		tableGrid.addColumn(Table::getName).setCaption("Description");
-		tableGrid.addColumn(Table::isActive).setCaption("Active");
-		tableGrid.setItems(tableService.getTables());
+	public TableView(TournamentService tournamentService, ValueStore valueStore) {
+
+		this.tournamentService = tournamentService;
+
+		this.tableGrid.addColumn(Table::getName).setCaption("Description");
+		this.tableGrid.addColumn(Table::isActive).setCaption("Active");
+		this.tableGrid.setItems(this.tournamentService.getTables(valueStore.getTournamentName()));
 
 		this.addComponent(new Button("Add Table", e -> {
-			this.getViewComponent().getUI().addWindow(new NewTableWindow(tableService, tableGrid));
+			this.getViewComponent().getUI()
+					.addWindow(new NewTableWindow(this.tournamentService, valueStore, tableGrid));
 		}));
 		this.addComponent(tableGrid);
+	}
+
+	public void reloadTables(String tournamentName) {
+		this.tableGrid.setItems(this.tournamentService.getTables(tournamentName));
 	}
 }

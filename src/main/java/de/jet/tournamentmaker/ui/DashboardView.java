@@ -27,6 +27,7 @@ public class DashboardView extends UI {
 
 		Consumer<String> callback = (String tournamentName) -> {
 			this.playerView.reloadPlayer(tournamentName);
+			this.tableView.reloadTables(tournamentName);
 		};
 
 		this.navigationBar.setCallback(callback);

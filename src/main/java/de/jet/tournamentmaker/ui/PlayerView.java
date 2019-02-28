@@ -15,8 +15,8 @@ public class PlayerView extends VerticalLayout implements View {
 
 	private static final long serialVersionUID = -1574593816169880530L;
 
-	private Grid<Player> playerGrid;
-	private TournamentService tournamentService;
+	private final Grid<Player> playerGrid;
+	private final TournamentService tournamentService;
 
 	public PlayerView(TournamentService tournamentService, ValueStore valueStore) {
 

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import de.jet.tournamentmaker.model.Player;
+import de.jet.tournamentmaker.model.Table;
 import de.jet.tournamentmaker.model.Tournament;
 
 @Component
@@ -44,11 +45,10 @@ public class TournamentService {
 
 	public List<Player> getPlayer(String tournamentName) {
 
-		if(tournamentName == null)
-		{
+		if (tournamentName == null) {
 			return Arrays.asList();
 		}
-		
+
 		return restTemplate.exchange(this.url + "/" + tournamentName + "/player", HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<Player>>() {
 				}).getBody();
@@ -60,6 +60,26 @@ public class TournamentService {
 
 		return restTemplate.exchange(this.url + "/" + tournamentName + "/player", HttpMethod.PUT, playerEntity,
 				new ParameterizedTypeReference<Player>() {
+				}).getBody();
+	}
+
+	public List<Table> getTables(String tournamentName) {
+
+		if (tournamentName == null) {
+			return Arrays.asList();
+		}
+
+		return restTemplate.exchange(this.url + "/" + tournamentName + "/tables", HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<Table>>() {
+				}).getBody();
+	}
+
+	public Table addTable(String tournamentName, Table table) {
+
+		HttpEntity<Table> playerEntity = new HttpEntity<Table>(table);
+
+		return restTemplate.exchange(this.url + "/" + tournamentName + "/tables", HttpMethod.PUT, playerEntity,
+				new ParameterizedTypeReference<Table>() {
 				}).getBody();
 	}
 

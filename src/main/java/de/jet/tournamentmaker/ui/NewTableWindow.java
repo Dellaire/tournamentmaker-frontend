@@ -7,13 +7,13 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.Window;
 
 import de.jet.tournamentmaker.model.Table;
-import de.jet.tournamentmaker.services.TableService;
+import de.jet.tournamentmaker.services.TournamentService;
 
 public class NewTableWindow extends Window {
 
 	private static final long serialVersionUID = -7413305617596831145L;
 
-	public NewTableWindow(TableService tableService, Grid<Table> tableGrid) {
+	public NewTableWindow(TournamentService tournamentService, ValueStore valueStore, Grid<Table> tableGrid) {
 
 		this.setCaption("Add Table");
 		this.center();
@@ -24,8 +24,8 @@ public class NewTableWindow extends Window {
 		TextField tableName = new TextField();
 		Button confirm = new Button("Add");
 		confirm.addClickListener(event -> {
-			tableService.postTable(new Table().setName(tableName.getValue()));
-			tableGrid.setItems(tableService.getTables());
+			tournamentService.addTable(valueStore.getTournamentName(), new Table().setName(tableName.getValue()));
+			tableGrid.setItems(tournamentService.getTables(valueStore.getTournamentName()));
 			this.close();
 		});
 
