@@ -34,6 +34,13 @@ public class TournamentService {
 				}).getBody();
 	}
 
+	public Tournament getTournament(String tournamentName) {
+
+		return restTemplate.exchange(this.url + "/" + tournamentName, HttpMethod.GET, null,
+				new ParameterizedTypeReference<Tournament>() {
+				}).getBody();
+	}
+
 	public Tournament postTournament(String tournamentName) {
 
 		HttpEntity<Tournament> playerEntity = new HttpEntity<Tournament>(new Tournament().setName(tournamentName));

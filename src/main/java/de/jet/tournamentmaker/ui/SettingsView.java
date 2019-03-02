@@ -11,7 +11,7 @@ import com.vaadin.ui.VerticalLayout;
 
 @SpringUI(path = "settings")
 @StyleSheet("style.scss")
-public class DashboardView extends UI {
+public class SettingsView extends UI {
 
 	private static final long serialVersionUID = -4379971617421474789L;
 
@@ -19,7 +19,7 @@ public class DashboardView extends UI {
 	private final PlayerView playerView;
 	private final TableView tableView;
 
-	public DashboardView(NavigationBar navigationBar, PlayerView playerView, TableView tableView) {
+	public SettingsView(NavigationBar navigationBar, PlayerView playerView, TableView tableView) {
 
 		this.navigationBar = navigationBar;
 		this.playerView = playerView;
