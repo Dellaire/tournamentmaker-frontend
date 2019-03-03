@@ -22,6 +22,8 @@ public class NewTableWindow extends Window {
 		HorizontalLayout tableForm = new HorizontalLayout();
 
 		TextField tableName = new TextField();
+		tableName.focus();
+
 		Button confirm = new Button("Add");
 		confirm.addClickListener(event -> {
 			tournamentService.addTable(valueStore.getTournamentName(), new Table().setName(tableName.getValue()));

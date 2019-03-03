@@ -16,7 +16,7 @@ import de.jet.tournamentmaker.services.TournamentService;
 @Component
 public class MatchesView extends VerticalLayout {
 
-	private static final long serialVersionUID = -1574593816169880530L;
+	private static final long serialVersionUID = 4781676108750926317L;
 
 	private final Grid<Match> matchesGrid;
 	private final TournamentService tournamentService;
@@ -27,6 +27,7 @@ public class MatchesView extends VerticalLayout {
 		this.tournamentService = tournamentService;
 
 		Button newRound = new Button("New Round");
+		newRound.addClickListener(event -> this.tournamentService.generateRound(valueStore.getTournamentName()));
 
 		this.matchesGrid.addColumn(
 				match -> match.getTeam1().getPlayer1().getName() + " - " + match.getTeam1().getPlayer1().getName())

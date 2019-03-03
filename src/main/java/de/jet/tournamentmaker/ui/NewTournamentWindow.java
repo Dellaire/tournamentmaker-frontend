@@ -20,6 +20,8 @@ public class NewTournamentWindow extends Window {
 		HorizontalLayout tournamentForm = new HorizontalLayout();
 
 		TextField tournamentName = new TextField();
+		tournamentName.focus();
+
 		Button confirm = new Button("Add");
 		confirm.addClickListener(event -> {
 			tournamentService.postTournament(tournamentName.getValue());

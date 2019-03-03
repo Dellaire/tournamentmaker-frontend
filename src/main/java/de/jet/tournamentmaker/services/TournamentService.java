@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import de.jet.tournamentmaker.model.Player;
+import de.jet.tournamentmaker.model.Round;
 import de.jet.tournamentmaker.model.Table;
 import de.jet.tournamentmaker.model.Tournament;
 
@@ -29,14 +30,14 @@ public class TournamentService {
 
 	public List<Tournament> getTournaments() {
 
-		return restTemplate
+		return this.restTemplate
 				.exchange(this.url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Tournament>>() {
 				}).getBody();
 	}
 
 	public Tournament getTournament(String tournamentName) {
 
-		return restTemplate.exchange(this.url + "/" + tournamentName, HttpMethod.GET, null,
+		return this.restTemplate.exchange(this.url + "/" + tournamentName, HttpMethod.GET, null,
 				new ParameterizedTypeReference<Tournament>() {
 				}).getBody();
 	}
@@ -45,7 +46,7 @@ public class TournamentService {
 
 		HttpEntity<Tournament> playerEntity = new HttpEntity<Tournament>(new Tournament().setName(tournamentName));
 
-		return restTemplate
+		return this.restTemplate
 				.exchange(this.url, HttpMethod.POST, playerEntity, new ParameterizedTypeReference<Tournament>() {
 				}).getBody();
 	}
@@ -56,7 +57,7 @@ public class TournamentService {
 			return Arrays.asList();
 		}
 
-		return restTemplate.exchange(this.url + "/" + tournamentName + "/player", HttpMethod.GET, null,
+		return this.restTemplate.exchange(this.url + "/" + tournamentName + "/player", HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<Player>>() {
 				}).getBody();
 	}
@@ -65,7 +66,7 @@ public class TournamentService {
 
 		HttpEntity<Player> playerEntity = new HttpEntity<Player>(player);
 
-		return restTemplate.exchange(this.url + "/" + tournamentName + "/player", HttpMethod.PUT, playerEntity,
+		return this.restTemplate.exchange(this.url + "/" + tournamentName + "/player", HttpMethod.PUT, playerEntity,
 				new ParameterizedTypeReference<Player>() {
 				}).getBody();
 	}
@@ -76,7 +77,7 @@ public class TournamentService {
 			return Arrays.asList();
 		}
 
-		return restTemplate.exchange(this.url + "/" + tournamentName + "/tables", HttpMethod.GET, null,
+		return this.restTemplate.exchange(this.url + "/" + tournamentName + "/tables", HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<Table>>() {
 				}).getBody();
 	}
@@ -85,8 +86,15 @@ public class TournamentService {
 
 		HttpEntity<Table> playerEntity = new HttpEntity<Table>(table);
 
-		return restTemplate.exchange(this.url + "/" + tournamentName + "/tables", HttpMethod.PUT, playerEntity,
+		return this.restTemplate.exchange(this.url + "/" + tournamentName + "/tables", HttpMethod.PUT, playerEntity,
 				new ParameterizedTypeReference<Table>() {
+				}).getBody();
+	}
+
+	public Round generateRound(String tournamentName) {
+
+		return this.restTemplate.exchange(this.url + "/" + tournamentName + "/rounds/generate", HttpMethod.PUT, null,
+				new ParameterizedTypeReference<Round>() {
 				}).getBody();
 	}
 

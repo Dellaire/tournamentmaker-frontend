@@ -22,6 +22,8 @@ public class NewPlayerWindow extends Window {
 		HorizontalLayout playerForm = new HorizontalLayout();
 
 		TextField playerName = new TextField();
+		playerName.focus();
+		
 		Button confirm = new Button("Add");
 		confirm.addClickListener(event -> {
 			tournamentService.addPlayer(valueStore.getTournamentName(), new Player().setName(playerName.getValue()));
