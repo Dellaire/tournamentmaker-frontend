@@ -1,5 +1,7 @@
 package de.jet.tournamentmaker.ui;
 
+import java.util.function.Supplier;
+
 import org.springframework.stereotype.Component;
 
 import com.vaadin.navigator.View;
@@ -17,8 +19,9 @@ public class PlayerView extends VerticalLayout implements View {
 
 	private final Grid<Player> playerGrid;
 	private final TournamentService tournamentService;
+	private Supplier<String> tournamentNameSupplier;
 
-	public PlayerView(TournamentService tournamentService, ValueStore valueStore) {
+	public PlayerView(TournamentService tournamentService) {
 
 		this.playerGrid = new Grid<Player>();
 		this.tournamentService = tournamentService;
@@ -27,15 +30,21 @@ public class PlayerView extends VerticalLayout implements View {
 		this.playerGrid.addColumn(Player::getScore).setCaption("Score");
 		this.playerGrid.addColumn(Player::getElo).setCaption("Elo");
 		this.playerGrid.addColumn(Player::isActive).setCaption("Active");
+		if (this.tournamentNameSupplier != null)
+			this.reloadPlayer(this.tournamentNameSupplier.get());
 
 		Button addPlayer = new Button("Add Player");
 		addPlayer.addClickListener(clickEvent -> this.getViewComponent().getUI()
-				.addWindow(new NewPlayerWindow(this.tournamentService, valueStore, this.playerGrid)));
+				.addWindow(new NewPlayerWindow(this.tournamentService, this.tournamentNameSupplier, this.playerGrid)));
 
 		this.addComponent(addPlayer);
 		this.addComponent(this.playerGrid);
 	}
 
+	public void setTournamentNameSupplier(Supplier<String> tournamentNameSupplier) {
+		this.tournamentNameSupplier = tournamentNameSupplier;
+	}
+	
 	public void reloadPlayer(String tournamentName) {
 		this.playerGrid.setItems(this.tournamentService.getPlayer(tournamentName));
 	}

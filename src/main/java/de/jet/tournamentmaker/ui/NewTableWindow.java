@@ -1,5 +1,7 @@
 package de.jet.tournamentmaker.ui;
 
+import java.util.function.Supplier;
+
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
@@ -13,7 +15,8 @@ public class NewTableWindow extends Window {
 
 	private static final long serialVersionUID = -7413305617596831145L;
 
-	public NewTableWindow(TournamentService tournamentService, ValueStore valueStore, Grid<Table> tableGrid) {
+	public NewTableWindow(TournamentService tournamentService, Supplier<String> tournamentNameSupplier,
+			Grid<Table> tableGrid) {
 
 		this.setCaption("Add Table");
 		this.center();
@@ -26,8 +29,8 @@ public class NewTableWindow extends Window {
 
 		Button confirm = new Button("Add");
 		confirm.addClickListener(event -> {
-			tournamentService.addTable(valueStore.getTournamentName(), new Table().setName(tableName.getValue()));
-			tableGrid.setItems(tournamentService.getTables(valueStore.getTournamentName()));
+			tournamentService.addTable(tournamentNameSupplier.get(), new Table().setName(tableName.getValue()));
+			tableGrid.setItems(tournamentService.getTables(tournamentNameSupplier.get()));
 			this.close();
 		});
 

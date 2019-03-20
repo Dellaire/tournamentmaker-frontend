@@ -1,7 +1,5 @@
 package de.jet.tournamentmaker.ui;
 
-import java.util.function.Consumer;
-
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
@@ -23,11 +21,13 @@ public class SettingsView extends UI {
 
 		this.navigationBar = navigationBar;
 		this.playerView = playerView;
+		this.playerView.setTournamentNameSupplier(() -> this.navigationBar.getTournamentName());
 		this.tableView = tableView;
+		this.tableView.setTournamentNameSupplier(() -> this.navigationBar.getTournamentName());
 
-		Consumer<String> callback = (String tournamentName) -> {
-			this.playerView.reloadPlayer(tournamentName);
-			this.tableView.reloadTables(tournamentName);
+		Notification callback = () -> {
+			this.playerView.reloadPlayer(this.navigationBar.getTournamentName());
+			this.tableView.reloadTables(this.navigationBar.getTournamentName());
 		};
 
 		this.navigationBar.setCallback(callback);

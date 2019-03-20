@@ -37,7 +37,7 @@ public class TournamentService {
 
 	public Tournament getTournament(String tournamentName) {
 
-		return this.restTemplate.exchange(this.url + "/" + tournamentName, HttpMethod.GET, null,
+		return this.restTemplate.exchange(this.url + "?name=" + tournamentName, HttpMethod.GET, null,
 				new ParameterizedTypeReference<Tournament>() {
 				}).getBody();
 	}

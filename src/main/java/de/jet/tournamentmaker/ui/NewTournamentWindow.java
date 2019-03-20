@@ -1,5 +1,7 @@
 package de.jet.tournamentmaker.ui;
 
+import java.util.function.Consumer;
+
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
@@ -11,7 +13,7 @@ public class NewTournamentWindow extends Window {
 
 	private static final long serialVersionUID = -7413305617596831145L;
 
-	public NewTournamentWindow(TournamentService tournamentService, Notification notification) {
+	public NewTournamentWindow(TournamentService tournamentService, Consumer<String> notification) {
 
 		this.setCaption("Add Tournament");
 		this.center();
@@ -25,7 +27,7 @@ public class NewTournamentWindow extends Window {
 		Button confirm = new Button("Add");
 		confirm.addClickListener(event -> {
 			tournamentService.postTournament(tournamentName.getValue());
-			notification.trigger();
+			notification.accept(tournamentName.getValue());
 			this.close();
 		});
 

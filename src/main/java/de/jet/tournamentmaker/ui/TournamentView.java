@@ -18,6 +18,7 @@ public class TournamentView extends UI {
 
 		this.navigationBar = navigationBar;
 		this.matchesView = matchesView;
+		this.matchesView.setTournamentNameSupplier(() -> this.navigationBar.getTournamentName());
 
 		VerticalLayout content = new VerticalLayout();
 		this.setContent(content);
@@ -27,6 +28,10 @@ public class TournamentView extends UI {
 
 		content.addComponent(this.navigationBar);
 		content.addComponent(body);
+
+		this.navigationBar.setCallback(() -> {
+			this.matchesView.reloadMatches(this.navigationBar.getTournamentName());
+		});
 	}
 
 	@Override
