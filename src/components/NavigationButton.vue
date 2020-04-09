@@ -1,6 +1,6 @@
 <template>
   <div>
-    <strong>{{ label }}</strong>
+    <button type="button"><strong>{{ label }}</strong></button>
   </div>
 </template>
 
@@ -14,10 +14,15 @@ export default {
 </script>
 
 <style scoped>
-div {
+button {
     background-color: #99ff99;
     align: center;
-    border-radius: 25px;
-    padding: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 0;
+    color: #2c3e50;
+}
+button:active {
+    background-color: #e6ffe6;
 }
 </style>

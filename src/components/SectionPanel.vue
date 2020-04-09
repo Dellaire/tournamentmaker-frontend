@@ -1,6 +1,7 @@
 <template>
-  <div>
-    {{ content }}
+  <div id="root">
+    <div id="header"><font><b>{{label}}</b></font></div>
+    <slot></slot>
   </div>
 </template>
 
@@ -8,16 +9,30 @@
 export default {
   name: 'SectionPanel',
   props: {
-    content: String
+    label: String
   }
 }
 </script>
 
 <style scoped>
-div {
+font {
+    color: #e6ffe6;
+}
+
+#root {
+    height: 100%;
     align: center;
-    border-radius: 25px;
     border: 5px solid;
-    padding: 20px;
+    padding-bottom: 20px;
+    margin: 10px;
+    border-radius: 25px;
+}
+
+#header {
+    padding-top: 5px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    background-color: #2c3e50;
+    border-radius: 15px 15px 0px 0px;
 }
 </style>

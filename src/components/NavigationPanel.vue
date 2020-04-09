@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table>
+    <table style="padding:10px">
         <tr>
             <td v-bind:key="element.label" v-for="element in elements">
                 <NavigationButton :label="element.label" />
@@ -23,11 +23,8 @@ export default {
 </script>
 
 <style scoped>
-table {
+div {
     background-color: #2c3e50;
-    border-radius: 10px;
-    border: 3px solid;
-    margin-bottom: 10px;
     width: 100%;
 }
 </style>

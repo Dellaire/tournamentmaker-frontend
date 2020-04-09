@@ -1,23 +1,23 @@
 <template>
   <div id="app">
-    <NavigationPanel v-bind:elements="elements"/>
-    <SectionPanel content="STUFF"/>
+    <NavigationPanel v-bind:elements="navigationElements"/>
+    <DataPanel v-bind:players="players"/>
   </div>
 </template>
 
 <script>
 import NavigationPanel from './components/NavigationPanel.vue'
-import SectionPanel from './components/SectionPanel.vue'
+import DataPanel from './components/DataPanel.vue'
 
 export default {
   name: 'App',
   components: {
     NavigationPanel,
-    SectionPanel
+    DataPanel
   },
   data() {
     return {
-        elements: [
+        navigationElements: [
             {
                 label: "Players"
             },
@@ -26,6 +26,33 @@ export default {
             },
             {
                 label: "Tournaments"
+            }
+        ],
+        players: [
+            {
+                id: "1",
+                name: "Henry",
+                points: 3
+            },
+            {
+                id: "2",
+                name: "Huy",
+                points: 1
+            },
+            {
+                id: "3",
+                name: "Nick",
+                points: 2
+            },
+            {
+                id: "4",
+                name: "Mario",
+                points: 4
+            },
+            {
+                id: "5",
+                name: "Lina",
+                points: 5
             }
         ]
     }

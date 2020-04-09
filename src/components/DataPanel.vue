@@ -1,14 +1,12 @@
 <template>
   <div>
-    <table>
+    <table id="carrier">
         <tr>
-            <td v-bind:key="element.label" v-for="element in firstRow">
-                <SectionPanel :content="element.label"/>
+            <td id="matches-panel">
+                <SectionPanel label="MATCHES">TEST</SectionPanel>
             </td>
-        </tr>
-        <tr>
-            <td v-bind:key="element.label" v-for="element in secondRow">
-                <SectionPanel :content="element.label"/>
+            <td id="players-panel">
+                <PlayersPanel v-bind:players="players"/>
             </td>
         </tr>
     </table>
@@ -17,26 +15,40 @@
 
 <script>
 import SectionPanel from './SectionPanel.vue'
+import PlayersPanel from './PlayersPanel.vue'
 
 export default {
+
   name: 'DataPanel',
+  
   components: {
-    SectionPanel
+    SectionPanel,
+    PlayersPanel
   },
-  props: ["elements"],
-  computed: {
-    firstRow: function() {
-        return this.elements.slice(0, 2)
-    },
-    secondRow: function() {
-        return this.elements.slice(2, 4)
-    }
+  
+  props: {
+    players: Array,
+    matches: Array
   }
 }
 </script>
 
 <style scoped>
+
 table {
     width: 100%;
 }
+
+td {
+    vertical-align: top;
+}
+
+#matches-panel {
+    width: 80%;
+}
+
+#players-panel {
+    width: 20%;
+}
+
 </style>
