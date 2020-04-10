@@ -3,7 +3,7 @@
     <table id="carrier">
         <tr>
             <td id="matches-panel">
-                <SectionPanel label="MATCHES">TEST</SectionPanel>
+                <MatchesPanel v-bind:matches="matches"/>
             </td>
             <td id="players-panel">
                 <PlayersPanel v-bind:players="players"/>
@@ -14,16 +14,16 @@
 </template>
 
 <script>
-import SectionPanel from './SectionPanel.vue'
 import PlayersPanel from './PlayersPanel.vue'
+import MatchesPanel from './MatchesPanel.vue'
 
 export default {
 
   name: 'DataPanel',
   
   components: {
-    SectionPanel,
-    PlayersPanel
+    PlayersPanel,
+    MatchesPanel
   },
   
   props: {

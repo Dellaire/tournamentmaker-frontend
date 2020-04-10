@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <NavigationPanel v-bind:elements="navigationElements"/>
-    <DataPanel v-bind:players="players"/>
+    <DataPanel v-bind:players="players" v-bind:matches="matches"/>
   </div>
 </template>
 
@@ -53,6 +53,62 @@ export default {
                 id: "5",
                 name: "Lina",
                 points: 5
+            }
+        ],
+        matches: [
+            {
+                id: "1",
+                team1:
+                {
+                    player1:
+                    {
+                        name: "Henry"
+                    },
+                    player2:
+                    {
+                        name: "Huy"
+                    }
+                },
+                team2:
+                {
+                    player1:
+                    {
+                        name: "Nick"
+                    },
+                    player2:
+                    {
+                        name: "Lina"
+                    }
+                },
+                team1Score: 6,
+                team2Score: 2
+            },
+            {
+                id: "2",
+                team1:
+                {
+                    player1:
+                    {
+                        name: "Nick"
+                    },
+                    player2:
+                    {
+                        name: "Huy"
+                    }
+                },
+                team2:
+                {
+                    player1:
+                    {
+                        name: "Mario"
+                    },
+                    player2:
+                    {
+                        name: "Lina"
+                    }
+                },
+                team1Score: 5,
+                team2Score: 5
             }
         ]
     }
