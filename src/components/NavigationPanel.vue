@@ -24,7 +24,7 @@ export default {
 
 <style scoped>
 div {
-    background-color: #2c3e50;
+    background-color: var(--a-pink);
     width: 100%;
 }
 </style>

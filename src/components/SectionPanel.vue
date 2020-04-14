@@ -16,7 +16,7 @@ export default {
 
 <style scoped>
 font {
-    color: #e6ffe6;
+    color: var(--a-violet);
 }
 
 #root {
@@ -26,13 +26,15 @@ font {
     padding-bottom: 20px;
     margin: 10px;
     border-radius: 25px;
+    color: var(--a-pink);
+    background-color: var(--a-violet);
 }
 
 #header {
     padding-top: 5px;
     margin-bottom: 20px;
     padding-bottom: 10px;
-    background-color: #2c3e50;
     border-radius: 15px 15px 0px 0px;
+    background-color: var(--a-pink);
 }
 </style>

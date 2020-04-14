@@ -15,14 +15,14 @@ export default {
 
 <style scoped>
 button {
-    background-color: #99ff99;
+    background-color: var(--a-violet);
     align: center;
     border-radius: 5px;
     padding: 10px;
     border: 0;
-    color: #2c3e50;
+    color: var(--a-pink);
 }
 button:active {
-    background-color: #e6ffe6;
+    background-color: var(--a-blue);
 }
 </style>

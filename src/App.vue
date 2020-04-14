@@ -2,6 +2,13 @@
   <div id="app">
     <NavigationPanel v-bind:elements="navigationElements"/>
     <DataPanel v-bind:players="players" v-bind:matches="matches"/>
+    <p style="background-color:var(--a-red)">a</p>
+    <p style="background-color:var(--a-violet)">a</p>
+    <p style="background-color:var(--a-pink)">a</p>
+    <p style="background-color:var(--a-blue)">a</p>
+    <p style="background-color:var(--a-green)">a</p>
+    <p style="background-color:var(--a-yellow)">a</p>
+    <p style="background-color:var(--a-orange)">a</p>
   </div>
 </template>
 
@@ -117,11 +124,28 @@ export default {
 </script>
 
 <style>
+
+* {
+    --a-red: red;
+    --a-violet: #660066;
+    --a-pink: fuchsia;
+    --a-blue: aqua;
+    --a-green: lime;
+    --a-yellow: yellow;
+    --a-orange: orange;
+    
+    --border: red;
+    
+    --old-border: #2c3e50;
+    --old-background: ;
+    --old-buttons: #99ff99;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
+
 </style>

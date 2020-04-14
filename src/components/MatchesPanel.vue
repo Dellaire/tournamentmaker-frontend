@@ -31,14 +31,48 @@
 
 <script>
 import SectionPanel from './SectionPanel.vue'
+import axios from 'axios'
 
 export default {
+
   name: 'MatchesPanel',
+  
   components: {
     SectionPanel
   },
-  props: {
-    matches: Array
+  
+  data() {
+    return {
+        tournament: {
+            data: [ {
+                rounds: [ {
+                    matches: [ {
+                    }]
+                }]
+            }]
+        }
+    }
+  },
+  
+  computed: {
+    matches: function() {
+    
+        var matches = Array();
+        this.tournament.data[0].rounds.forEach(round => {
+            matches.push(round.matches);
+        })
+    
+        return matches.flat();
+    }
+  },
+  
+  mounted () {
+    axios
+      .get('http://localhost:8081/tournaments')
+      .then(response => (this.tournament = response))
+      .catch(function (error) {
+            console.log(error);
+      } )
   }
 }
 </script>
@@ -46,6 +80,7 @@ export default {
 <style scoped>
 
 table {
+    color: var(--a-green);
     width: 100%;
     height: 100%;
     border-collapse: collapse;

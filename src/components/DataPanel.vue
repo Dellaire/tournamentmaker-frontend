@@ -35,6 +35,10 @@ export default {
 
 <style scoped>
 
+div {
+    background-color: #001a00;
+}
+
 table {
     width: 100%;
 }
